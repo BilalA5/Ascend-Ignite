@@ -31,5 +31,10 @@ export async function generateProfileSummary(profile: Partial<UserProfile>): Pro
     // Simulate API delay
     await new Promise(resolve => setTimeout(resolve, 1500));
 
-    return `As a ${profile.year} studying ${profile.major}, navigating the future of ${profile.careerInterest} can feel daunting, especially with concerns about ${profile.biggestFear?.toLowerCase()}. However, your ${profile.learningStyle?.toLowerCase()} learning approach is a massive asset. Ascend Ignite will help you leverage your unique strengths and build resilience in an AI-driven world.`;
+    const academicFocus = profile.major || 'your field';
+    const careerPath = profile.careerInterest || 'your career path';
+    const fear = profile.biggestFear?.toLowerCase() || 'an uncertain future';
+    const learningStyle = profile.learningStyle?.toLowerCase() || 'practical';
+
+    return `As someone studying ${academicFocus}, navigating the future of ${careerPath} can feel daunting, especially with concerns about ${fear}. However, your ${learningStyle} learning approach is a massive asset. Ascend Ignite will help you leverage your unique strengths and build resilience in an AI-driven world.`;
 }

@@ -14,6 +14,7 @@ export const Dashboard = () => {
     const overallProgress = 15;
     const completedModules = 0;
     const totalModules = moduleTemplates.length;
+    const firstName = profile?.name?.trim().split(/\s+/)[0] || 'Explorer';
 
     if (!profile) return null;
 
@@ -28,7 +29,7 @@ export const Dashboard = () => {
                     <div>
                         <p className="text-xs uppercase tracking-[0.34em] text-slate-500">Dashboard</p>
                         <h1 className="mt-3 text-4xl font-bold text-slate-900 md:text-5xl">
-                            Welcome back, {profile.name.split(' ')[0]}
+                            Welcome back, {firstName}
                         </h1>
                         <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
                             Your learning path now feels more like a premium coaching dashboard: clear priorities, cleaner hierarchy, and less visual clutter.
@@ -45,7 +46,7 @@ export const Dashboard = () => {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.55fr)_360px]">
                 <div className="space-y-8">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                        <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(15,118,110,0.08),rgba(255,255,255,0.82))]">
+                        <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(255,255,255,0.88))]">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-primary">
                                     <BookOpen className="h-5 w-5" />
@@ -57,8 +58,8 @@ export const Dashboard = () => {
                                     {profile.profileSummary || 'Complete more modules to build out your personalized profile summary.'}
                                 </p>
                                 <div className="mt-5 flex flex-wrap gap-3">
-                                    <Tag>{profile.learningStyle} Learner</Tag>
-                                    <Tag>{profile.mindsetType}</Tag>
+                                    <Tag>{profile.learningStyle || 'Adaptive'} Learner</Tag>
+                                    <Tag>{profile.mindsetType || 'Growth-Oriented'}</Tag>
                                 </div>
                             </CardContent>
                         </Card>
@@ -71,7 +72,7 @@ export const Dashboard = () => {
                         </h2>
                         <Card className="overflow-hidden">
                             <div className="grid gap-0 md:grid-cols-[260px_minmax(0,1fr)]">
-                                <div className="flex min-h-[220px] items-center justify-center bg-[linear-gradient(180deg,rgba(15,118,110,0.82),rgba(17,94,89,0.95))] p-8 text-white">
+                                <div className="flex min-h-[220px] items-center justify-center bg-[linear-gradient(180deg,rgba(37,99,235,0.88),rgba(30,64,175,0.96))] p-8 text-white">
                                     <div className="text-center">
                                         <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-white/14 backdrop-blur">
                                             <PlayCircle className="h-10 w-10" />
@@ -106,8 +107,8 @@ export const Dashboard = () => {
                             {moduleTemplates.map((module, index) => (
                                 <Card key={module.id} className="group">
                                     <div className="grid gap-0 md:grid-cols-[96px_minmax(0,1fr)_190px]">
-                                        <div className="flex items-center justify-center bg-[linear-gradient(180deg,rgba(255,255,255,0.5),rgba(15,118,110,0.08))] p-6">
-                                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white text-lg font-bold text-primary shadow-[0_14px_32px_rgba(15,118,110,0.12)]">
+                                        <div className="flex items-center justify-center bg-[linear-gradient(180deg,rgba(255,255,255,0.65),rgba(37,99,235,0.08))] p-6">
+                                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white text-lg font-bold text-primary shadow-[0_14px_32px_rgba(37,99,235,0.12)]">
                                                 {index + 1}
                                             </div>
                                         </div>
@@ -143,7 +144,7 @@ export const Dashboard = () => {
                         <Card>
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-slate-900">
-                                    <Trophy className="h-5 w-5 text-amber-500" />
+                                    <Trophy className="h-5 w-5 text-primary" />
                                     Your Journey
                                 </CardTitle>
                             </CardHeader>

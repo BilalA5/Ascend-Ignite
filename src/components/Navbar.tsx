@@ -7,6 +7,8 @@ import { Button } from './Button';
 export const Navbar = () => {
     const location = useLocation();
     const profile = getProfile();
+    const displayName = profile?.name?.trim() || 'Member';
+    const displayMajor = profile?.major?.trim() || 'AI Readiness';
 
     // Don't show navbar on specific pages
     if (['/', '/signup', '/onboarding'].includes(location.pathname)) {
@@ -19,11 +21,11 @@ export const Navbar = () => {
     };
 
     return (
-        <nav className="sticky top-0 z-50 w-full border-b border-white/40 bg-[rgba(248,242,232,0.72)] backdrop-blur-xl">
+        <nav className="sticky top-0 z-50 w-full border-b border-blue-100/70 bg-[rgba(248,251,255,0.82)] backdrop-blur-xl">
             <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
                 <div className="flex items-center gap-6">
                     <Link to="/dashboard" className="flex items-center gap-3 text-slate-900">
-                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white shadow-[0_12px_30px_rgba(15,118,110,0.25)]">
+                        <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-primary text-white shadow-[0_12px_30px_rgba(37,99,235,0.25)]">
                             <Flame className="h-5 w-5" />
                         </div>
                         <div className="leading-tight">
@@ -41,10 +43,10 @@ export const Navbar = () => {
                     {profile ? (
                         <div className="flex items-center gap-4">
                             <div className="hidden md:flex flex-col items-end">
-                                <span className="text-sm font-semibold text-slate-900">{profile.name}</span>
-                                <span className="text-xs tracking-[0.18em] uppercase text-slate-500">{profile.major}</span>
+                                <span className="text-sm font-semibold text-slate-900">{displayName}</span>
+                                <span className="text-xs tracking-[0.18em] uppercase text-slate-500">{displayMajor}</span>
                             </div>
-                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary shadow-[0_10px_25px_rgba(15,118,110,0.12)]">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-primary shadow-[0_10px_25px_rgba(37,99,235,0.12)]">
                                 <User className="h-4 w-4" />
                             </div>
                             <Button variant="ghost" size="sm" onClick={handleLogout} title="Logout">
@@ -65,7 +67,7 @@ export const Navbar = () => {
 const NavLink = ({ to, active, children }: { to: string, active: boolean, children: React.ReactNode }) => (
     <Link
         to={to}
-        className={`rounded-full px-4 py-2 transition-all ${active ? 'bg-primary text-white shadow-[0_10px_25px_rgba(15,118,110,0.22)]' : 'text-slate-600 hover:bg-white hover:text-slate-900'
+        className={`rounded-full px-4 py-2 transition-all ${active ? 'bg-primary text-white shadow-[0_10px_25px_rgba(37,99,235,0.22)]' : 'text-slate-600 hover:bg-white hover:text-slate-900'
             }`}
     >
         {children}

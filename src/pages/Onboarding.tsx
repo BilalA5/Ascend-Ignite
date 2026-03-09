@@ -8,6 +8,7 @@ import { Card, CardContent } from '../components/Card';
 import { updateProfile } from '../services/profileService';
 import { generateProfileSummary } from '../services/aiService';
 import { UserProfile } from '../types';
+import { moduleTemplates } from '../data/mockData';
 
 type QuestionType = 'select' | 'radio';
 
@@ -96,7 +97,10 @@ export const Onboarding = () => {
             // Finalize and generate profile summary
             setIsGenerating(true);
             try {
-                const fullProfile = updateProfile(answers);
+                const fullProfile = updateProfile({
+                    ...answers,
+                    recommendedModule: moduleTemplates[0]?.id ?? '',
+                });
                 const summary = await generateProfileSummary(fullProfile);
                 updateProfile({ profileSummary: summary });
                 void navigate('/dashboard');

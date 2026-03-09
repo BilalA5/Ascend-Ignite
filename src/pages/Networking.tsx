@@ -57,7 +57,7 @@ export const Networking = () => {
                                     </div>
                                     <div className="mt-6 flex justify-end">
                                         {registeredEvents[event.id] ? (
-                                            <div className="flex items-center gap-2 text-green-600 font-medium px-4 py-2 bg-green-50 rounded-md">
+                                            <div className="flex items-center gap-2 rounded-md bg-blue-50 px-4 py-2 font-medium text-blue-700">
                                                 <CheckCircle2 className="w-5 h-5" /> Registered
                                             </div>
                                         ) : (

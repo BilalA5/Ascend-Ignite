@@ -67,8 +67,8 @@ export const QuizPage = () => {
                     className="w-full max-w-md"
                 >
                     <Card className="text-center overflow-hidden">
-                        <div className={`p-8 ${passed ? 'bg-green-50' : 'bg-slate-50'}`}>
-                            <div className={`w-24 h-24 mx-auto rounded-full flex items-center justify-center mb-6 ${passed ? 'bg-green-100 text-green-600' : 'bg-slate-200 text-slate-500'}`}>
+                        <div className={`p-8 ${passed ? 'bg-blue-50' : 'bg-slate-50'}`}>
+                            <div className={`w-24 h-24 mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full ${passed ? 'bg-blue-100 text-blue-600' : 'bg-slate-200 text-slate-500'}`}>
                                 <Trophy className="w-12 h-12" />
                             </div>
                             <h2 className="text-3xl font-bold font-heading mb-2">Quiz Complete!</h2>
@@ -136,11 +136,11 @@ export const QuizPage = () => {
 
                                     if (isAnswered) {
                                         if (isCorrect) {
-                                            stateClass = "border-green-500 bg-green-50 text-green-800 shadow-sm ring-1 ring-green-500";
-                                            Icon = <CheckCircle2 className="w-5 h-5 text-green-500" />;
+                                            stateClass = "border-blue-500 bg-blue-50 text-blue-800 shadow-sm ring-1 ring-blue-500";
+                                            Icon = <CheckCircle2 className="w-5 h-5 text-blue-500" />;
                                         } else if (isSelected && !isCorrect) {
-                                            stateClass = "border-red-500 bg-red-50 text-red-800 shadow-sm";
-                                            Icon = <XCircle className="w-5 h-5 text-red-500" />;
+                                            stateClass = "border-slate-400 bg-slate-100 text-slate-800 shadow-sm";
+                                            Icon = <XCircle className="w-5 h-5 text-slate-500" />;
                                         } else {
                                             stateClass = "border-slate-200 opacity-50"; // Dim non-selected wrong answers
                                         }
@@ -169,7 +169,7 @@ export const QuizPage = () => {
                                         animate={{ opacity: 1, height: 'auto', marginTop: 32 }}
                                         className="overflow-hidden"
                                     >
-                                        <div className={`p-4 rounded-xl border ${selectedAnswer === currentQuestion.correctAnswerIndex ? 'bg-green-50 border-green-200 text-green-800' : 'bg-slate-100 border-slate-200 text-slate-800'}`}>
+                                        <div className={`rounded-xl border p-4 ${selectedAnswer === currentQuestion.correctAnswerIndex ? 'border-blue-200 bg-blue-50 text-blue-800' : 'border-slate-200 bg-slate-100 text-slate-800'}`}>
                                             <h4 className="font-bold mb-1">Explanation</h4>
                                             <p>{currentQuestion.explanation}</p>
                                         </div>

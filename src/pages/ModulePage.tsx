@@ -40,7 +40,7 @@ export const ModulePage = () => {
             >
                 <Card className="overflow-hidden">
                     <div className="relative flex aspect-video items-center justify-center bg-slate-900">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(15,118,110,0.34),transparent_22%),linear-gradient(180deg,rgba(15,23,42,0.2),rgba(15,23,42,0.78))]" />
+                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(37,99,235,0.34),transparent_22%),linear-gradient(180deg,rgba(30,41,59,0.18),rgba(15,23,42,0.8))]" />
                         <img
                             src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000"
                             alt="Video Thumbnail"
@@ -70,7 +70,7 @@ export const ModulePage = () => {
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2">
                     {moduleData.infographics.map((info, i) => (
-                        <Card key={i} className="bg-[linear-gradient(180deg,rgba(255,255,255,0.78),rgba(255,249,243,0.92))]">
+                        <Card key={i} className="bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(239,246,255,0.92))]">
                             <CardHeader>
                                 <CardTitle className="text-lg">{info.title}</CardTitle>
                             </CardHeader>
@@ -87,7 +87,7 @@ export const ModulePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
-                <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(15,118,110,0.08),rgba(255,255,255,0.86))]">
+                <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(255,255,255,0.9))]">
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-xl text-primary">
                             <Target className="h-6 w-6" /> Scenario Exercise
@@ -104,7 +104,7 @@ export const ModulePage = () => {
                                     <button
                                         onClick={() => setActiveScenario(i)}
                                         className={`w-full rounded-[24px] border p-5 text-left transition-all ${activeScenario === i
-                                            ? 'border-primary bg-primary text-white shadow-[0_18px_42px_rgba(15,118,110,0.22)]'
+                                            ? 'border-primary bg-primary text-white shadow-[0_18px_42px_rgba(37,99,235,0.22)]'
                                             : 'border-white/70 bg-white/80 text-slate-700 hover:border-primary/40 hover:bg-white'
                                             }`}
                                     >
@@ -132,7 +132,7 @@ export const ModulePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="rounded-[34px] bg-[linear-gradient(180deg,#16312f_0%,#0f1f1e_100%)] p-8 text-white md:p-12"
+                className="rounded-[34px] bg-[linear-gradient(180deg,#1d4ed8_0%,#0f172a_100%)] p-8 text-white md:p-12"
             >
                 <div className="flex flex-col items-center space-y-8 text-center">
                     <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-primary">

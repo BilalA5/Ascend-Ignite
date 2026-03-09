@@ -27,6 +27,7 @@
   }
 
   body {
+    margin: 0;
     background:
       radial-gradient(circle at top, rgba(37, 99, 235, 0.14), transparent 28%),
       radial-gradient(circle at 85% 15%, rgba(96, 165, 250, 0.12), transparent 20%),
@@ -74,5 +75,57 @@
       linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
       linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
     background-size: 36px 36px;
+  }
+
+  .hero-spline-main {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:
+      radial-gradient(circle at 50% 18%, rgba(224, 242, 254, 0.68), transparent 24%),
+      linear-gradient(180deg, #b8e3fb 0%, #87cefa 58%, #87cefa 100%);
+  }
+
+  .hero-spline-stage {
+    height: 118%;
+    width: 118%;
+    min-height: 118vh;
+    min-width: 118vw;
+    transform: scale(1.82) translateY(-2%);
+    transform-origin: center center;
+    filter: saturate(0.68) brightness(1.08) contrast(0.95);
+    background:
+      radial-gradient(circle at 50% 24%, rgba(224, 242, 254, 0.56), transparent 22%),
+      linear-gradient(180deg, #b8e3fb 0%, #87cefa 58%, #87cefa 100%);
+  }
+
+  .hero-spline-stage > div,
+  .hero-spline-stage canvas {
+    height: 100% !important;
+    width: 100% !important;
+    background: #87cefa !important;
+  }
+
+  @media (max-width: 1024px) {
+    .hero-spline-stage {
+      height: 122%;
+      width: 122%;
+      min-height: 122vh;
+      min-width: 122vw;
+      transform: scale(1.68) translateY(0%);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .hero-spline-stage {
+      height: 126%;
+      width: 126%;
+      min-height: 126vh;
+      min-width: 126vw;
+      transform: scale(1.5) translateY(2%);
+    }
   }
 }

@@ -15,7 +15,7 @@ import {
     type MotionValue,
     type Variants,
 } from 'framer-motion';
-import { cn } from '../lib/utils';
+import { cn } from '../utils/helpers';
 
 type WrapperStyle = MotionStyle & {
     '--x': MotionValue<string>;

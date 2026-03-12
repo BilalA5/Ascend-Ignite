@@ -8,7 +8,7 @@ import {
     useState,
 } from 'react';
 import { type DynamicAnimationOptions, motion } from 'framer-motion';
-import { cn } from '../lib/utils';
+import { cn } from '../utils/helpers';
 
 interface TextProps {
     children: React.ReactNode;

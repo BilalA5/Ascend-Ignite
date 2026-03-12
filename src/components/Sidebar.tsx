@@ -52,7 +52,7 @@ export const Sidebar = () => {
         >
             {/* Header */}
             <div className="flex items-center gap-3 px-4 py-5 border-b border-slate-100">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-blue-500 text-white shadow-[0_4px_15px_rgba(0,230,118,0.3)]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary-hover text-white shadow-[0_4px_15px_rgba(37,99,235,0.3)]">
                     <Flame className="h-5 w-5" />
                 </div>
                 <AnimatePresence>
@@ -72,7 +72,7 @@ export const Sidebar = () => {
             {/* Profile Section */}
             <div className={`border-b border-slate-100 px-4 py-5 ${collapsed ? 'flex justify-center' : ''}`}>
                 <div className={`flex ${collapsed ? 'flex-col items-center' : 'items-center gap-3'}`}>
-                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-emerald-400 to-blue-500 text-sm font-bold text-white shadow-[0_0_20px_rgba(0,230,118,0.25)]">
+                    <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-primary to-blue-500 text-sm font-bold text-white shadow-[0_0_20px_rgba(37,99,235,0.25)]">
                         {initials}
                     </div>
                     <AnimatePresence>
@@ -103,12 +103,12 @@ export const Sidebar = () => {
                             to={item.to}
                             className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all ${
                                 isActive
-                                    ? 'bg-gradient-to-r from-emerald-50 to-blue-50 text-emerald-700 shadow-sm'
+                                    ? 'bg-gradient-to-r from-blue-50 to-blue-100 text-primary shadow-sm'
                                     : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                             } ${collapsed ? 'justify-center' : ''}`}
                             title={collapsed ? item.label : undefined}
                         >
-                            <item.icon className={`h-5 w-5 shrink-0 ${isActive ? 'text-emerald-600' : ''}`} />
+                            <item.icon className={`h-5 w-5 shrink-0 ${isActive ? 'text-primary' : ''}`} />
                             <AnimatePresence>
                                 {!collapsed && (
                                     <motion.span

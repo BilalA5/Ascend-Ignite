@@ -6,14 +6,17 @@ import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter }
 import { Button } from '../components/Button';
 import { ProgressBar } from '../components/ProgressBar';
 import { moduleTemplates, mockEvents } from '../data/mockData';
+import { getCompletedModuleIds, getQuizzesPassed } from '../services/progressService';
 
 export const Dashboard = () => {
     const profile = getProfile();
-    const recommendedModule = moduleTemplates[0];
+    const recommendedModule = moduleTemplates.find(m => !completedIds.includes(m.id)) || moduleTemplates[0];
     const upcomingEvents = mockEvents.slice(0, 2);
-    const overallProgress = 15;
-    const completedModules = 0;
+    const completedIds = getCompletedModuleIds();
     const totalModules = moduleTemplates.length;
+    const completedModules = completedIds.length;
+    const quizzesPassed = getQuizzesPassed();
+    const overallProgress = Math.round((completedModules / totalModules) * 100);
     const firstName = profile?.name?.trim().split(/\s+/)[0] || 'Explorer';
 
     if (!profile) return null;
@@ -199,7 +202,7 @@ export const Dashboard = () => {
                                 <ProgressBar progress={overallProgress} showLabel />
                                 <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
                                     <InfoBlock value={`${completedModules}/${totalModules}`} label="Modules" />
-                                    <InfoBlock value="0" label="Quizzes Passed" />
+                                    <InfoBlock value={String(quizzesPassed)} label="Quizzes Passed" />
                                 </div>
                             </CardContent>
                         </Card>

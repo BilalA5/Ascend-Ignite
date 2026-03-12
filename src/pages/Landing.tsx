@@ -11,7 +11,9 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { FeatureSteps } from '../components/FeatureSteps';
+import { FeatureCarousel } from '../components/FeatureCarousel';
 import { LandingNavbar } from '../components/LandingNavbar';
+import { VerticalCutReveal } from '../components/VerticalCutReveal';
 import { getProfile } from '../services/profileService';
 
 const HeroSpline = lazy(() =>
@@ -87,7 +89,13 @@ export const Landing = () => {
                         <div className="mx-auto max-w-4xl rounded-[32px] border border-white/40 bg-white/50 p-6 shadow-[0_24px_64px_rgba(15,23,42,0.08)] backdrop-blur-2xl backdrop-saturate-150 md:p-10">
                             <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4">Ascend Ignite</p>
                             <h1 className="max-w-2xl text-3xl text-slate-950 md:text-5xl leading-[1.15]">
-                                The career platform for students who don't want to be left behind.
+                                <VerticalCutReveal
+                                    splitBy="words"
+                                    staggerDuration={0.08}
+                                    transition={{ type: 'spring', stiffness: 200, damping: 21 }}
+                                >
+                                    The career platform for students who don't want to be left behind.
+                                </VerticalCutReveal>
                             </h1>
                             <p className="mt-4 max-w-lg text-base leading-7 text-slate-500">
                                 Learn to work alongside AI, build real career skills, and earn certificates that actually say something — all in under an hour.
@@ -173,6 +181,40 @@ export const Landing = () => {
                                 image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
                             },
                         ]}
+                    />
+                </div>
+            </section>
+
+            {/* ── Platform Preview Carousel ── */}
+            <section className="relative overflow-hidden py-16 md:py-24">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_50%,#eef5ff_100%)]" />
+                <div className="relative z-10 container mx-auto px-4 md:px-6">
+                    <motion.div
+                        initial={{ opacity: 0, y: 16 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        className="text-center mb-8"
+                    >
+                        <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">See it in action</p>
+                        <h2 className="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">A closer look at the platform</h2>
+                    </motion.div>
+
+                    <FeatureCarousel
+                        steps={[
+                            { id: '1', name: 'Courses', title: 'Guided Learning Modules', description: 'Each course includes videos, interactive scenarios, and knowledge checks designed for real-world readiness.' },
+                            { id: '2', name: 'Quizzes', title: 'Test Your Understanding', description: 'Score 70% or higher to prove mastery and unlock your certificate for each course.' },
+                            { id: '3', name: 'Certificates', title: 'Earn Real Credentials', description: 'Download professional certificates and share them on LinkedIn or with employers.' },
+                            { id: '4', name: 'Community', title: 'Connect & Grow Together', description: 'Join networking events, advising sessions, and connect with peers on the same journey.' },
+                        ]}
+                        image={{
+                            step1img1: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600',
+                            step1img2: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600',
+                            step2img1: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600',
+                            step2img2: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80&w=600',
+                            step3img: 'https://images.unsplash.com/photo-1523050854058-8df90110c476?auto=format&fit=crop&q=80&w=600',
+                            step4img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=600',
+                            alt: 'Ascend Ignite platform preview',
+                        }}
                     />
                 </div>
             </section>

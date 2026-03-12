@@ -67,7 +67,7 @@ export const QuizPage = () => {
                     className="w-full max-w-md"
                 >
                     <Card className="text-center overflow-hidden">
-                        <div className={`p-8 ${passed ? 'bg-gradient-to-br from-emerald-50 to-cyan-50' : 'bg-slate-50'}`}>
+                        <div className={`p-8 ${passed ? 'bg-gradient-to-br from-emerald-50 to-blue-50' : 'bg-slate-50'}`}>
                             <div className={`w-24 h-24 mx-auto mb-6 flex items-center justify-center rounded-full ${passed ? 'bg-emerald-100 text-emerald-600 shadow-[0_0_30px_rgba(0,230,118,0.2)]' : 'bg-slate-200 text-slate-500'}`}>
                                 <Trophy className="w-12 h-12" />
                             </div>

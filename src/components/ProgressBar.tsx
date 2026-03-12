@@ -15,7 +15,7 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ progress, className, s
         <div className={cn("w-full", className)}>
             <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200/60">
                 <motion.div
-                    className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-green-500 shadow-[0_0_12px_rgba(16,185,129,0.45)]"
+                    className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500 shadow-[0_0_12px_rgba(16,185,129,0.45)]"
                     initial={{ width: 0 }}
                     animate={{ width: `${normalizedProgress}%` }}
                     transition={{ duration: 0.5, ease: "easeOut" }}

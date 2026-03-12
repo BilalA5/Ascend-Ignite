@@ -59,7 +59,7 @@ const Certificate = ({ name, courseName, date, onDownload }: {
                         <p className="text-sm text-slate-500">
                             has successfully completed the course
                         </p>
-                        <p className="font-heading text-xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent md:text-2xl">
+                        <p className="font-heading text-xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent md:text-2xl">
                             {courseName}
                         </p>
                     </div>
@@ -152,7 +152,7 @@ export const Certificates = () => {
                     {moduleTemplates.map((module, index) => {
                         const isCompleted = completedModules.includes(module.id);
                         const gradients = [
-                            'from-emerald-500 to-cyan-500',
+                            'from-emerald-500 to-blue-500',
                             'from-violet-500 to-purple-500',
                             'from-amber-500 to-orange-500',
                         ];

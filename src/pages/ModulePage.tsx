@@ -30,7 +30,7 @@ export const ModulePage = () => {
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-3xl">
                     <p className="text-xs uppercase tracking-[0.3em] text-emerald-500 font-semibold">Course Experience</p>
                     <h1 className="mt-4 text-4xl font-bold text-slate-900 md:text-6xl">{moduleData.title}</h1>
-                    <p className="mt-4 text-lg leading-8 bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-medium">{moduleData.topic}</p>
+                    <p className="mt-4 text-lg leading-8 bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent font-medium">{moduleData.topic}</p>
                 </motion.div>
             </header>
 
@@ -94,7 +94,7 @@ export const ModulePage = () => {
             >
                 <Card className="neon-border bg-[linear-gradient(135deg,rgba(0,230,118,0.04),rgba(0,229,255,0.04),rgba(255,255,255,0.92))]">
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                        <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
                             <Target className="h-6 w-6 text-emerald-500" /> Scenario Exercise
                         </CardTitle>
                     </CardHeader>
@@ -109,7 +109,7 @@ export const ModulePage = () => {
                                     <button
                                         onClick={() => setActiveScenario(i)}
                                         className={`w-full rounded-[24px] border p-5 text-left transition-all ${activeScenario === i
-                                            ? 'border-emerald-400 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-[0_18px_42px_rgba(0,230,118,0.22)]'
+                                            ? 'border-emerald-400 bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-[0_18px_42px_rgba(0,230,118,0.22)]'
                                             : 'border-white/70 bg-white/80 text-slate-700 hover:border-emerald-300 hover:bg-white'
                                             }`}
                                     >
@@ -161,7 +161,7 @@ export const ModulePage = () => {
                     <div className="pt-2">
                         <h3 className="mb-4 text-xl font-bold">Ready to test your knowledge?</h3>
                         <Link to={`/module/${moduleData.id}/quiz`}>
-                            <Button size="lg" className="w-full px-12 text-lg sm:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
+                            <Button size="lg" className="w-full px-12 text-lg sm:w-auto bg-gradient-to-r from-emerald-500 to-blue-500 hover:from-emerald-600 hover:to-blue-600 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
                                 Start Course Quiz <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
                         </Link>

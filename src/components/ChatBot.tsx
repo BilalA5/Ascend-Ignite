@@ -168,8 +168,8 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
                         onClick={() => setIsOpen(true)}
                         className={`fixed bottom-6 right-6 z-50 flex h-14 w-14 items-center justify-center rounded-full shadow-lg transition-transform hover:scale-105 ${
                             mode === 'course'
-                                ? 'bg-gradient-to-br from-emerald-500 to-cyan-500 shadow-[0_8px_30px_rgba(0,230,118,0.35)]'
-                                : 'bg-gradient-to-br from-violet-500 to-purple-600 shadow-[0_8px_30px_rgba(139,92,246,0.35)]'
+                                ? 'bg-gradient-to-br from-emerald-500 to-blue-500 shadow-[0_8px_30px_rgba(0,230,118,0.35)]'
+                                : 'bg-gradient-to-br from-emerald-500 to-blue-600 shadow-[0_8px_30px_rgba(0,230,118,0.25)]'
                         }`}
                     >
                         <MessageCircle className="h-6 w-6 text-white" />
@@ -189,8 +189,8 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
                         {/* Header */}
                         <div className={`flex items-center justify-between px-5 py-4 text-white ${
                             mode === 'course'
-                                ? 'bg-gradient-to-r from-emerald-500 to-cyan-500'
-                                : 'bg-gradient-to-r from-violet-500 to-purple-600'
+                                ? 'bg-gradient-to-r from-emerald-500 to-blue-500'
+                                : 'bg-gradient-to-r from-emerald-500 to-blue-600'
                         }`}>
                             <div className="flex items-center gap-3">
                                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white/20 backdrop-blur">
@@ -224,7 +224,7 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
                                         msg.role === 'assistant'
                                             ? mode === 'course'
                                                 ? 'bg-emerald-100 text-emerald-600'
-                                                : 'bg-violet-100 text-violet-600'
+                                                : 'bg-emerald-100 text-emerald-600'
                                             : 'bg-slate-100 text-slate-600'
                                     }`}>
                                         {msg.role === 'assistant' ? <Bot className="h-4 w-4" /> : <User className="h-4 w-4" />}
@@ -243,7 +243,7 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
                             {isTyping && (
                                 <div className="flex gap-2">
                                     <div className={`flex h-7 w-7 items-center justify-center rounded-full ${
-                                        mode === 'course' ? 'bg-emerald-100 text-emerald-600' : 'bg-violet-100 text-violet-600'
+                                        mode === 'course' ? 'bg-emerald-100 text-emerald-600' : 'bg-emerald-100 text-emerald-600'
                                     }`}>
                                         <Bot className="h-4 w-4" />
                                     </div>
@@ -299,8 +299,8 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
                                     disabled={!input.trim()}
                                     className={`flex h-10 w-10 items-center justify-center rounded-xl transition-all disabled:opacity-40 ${
                                         mode === 'course'
-                                            ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-sm hover:shadow-md'
-                                            : 'bg-gradient-to-r from-violet-500 to-purple-600 text-white shadow-sm hover:shadow-md'
+                                            ? 'bg-gradient-to-r from-emerald-500 to-blue-500 text-white shadow-sm hover:shadow-md'
+                                            : 'bg-gradient-to-r from-emerald-500 to-blue-600 text-white shadow-sm hover:shadow-md'
                                     }`}
                                 >
                                     <Send className="h-4 w-4" />

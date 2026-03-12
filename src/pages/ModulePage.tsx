@@ -38,19 +38,23 @@ export const ModulePage = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
             >
-                <Card className="overflow-hidden">
-                    <div className="relative flex aspect-video items-center justify-center bg-slate-900">
-                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(37,99,235,0.34),transparent_22%),linear-gradient(180deg,rgba(30,41,59,0.18),rgba(15,23,42,0.8))]" />
+                <Card className="overflow-hidden neon-border">
+                    <div className="relative flex aspect-video items-center justify-center bg-slate-900 cursor-pointer group/video">
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
                         <img
-                            src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000"
-                            alt="Video Thumbnail"
-                            className="absolute inset-0 h-full w-full object-cover opacity-35"
+                            src={moduleData.thumbnail || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000'}
+                            alt={`${moduleData.title} thumbnail`}
+                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/video:scale-105"
                         />
                         <div className="relative z-20 flex flex-col items-center">
-                            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-white/15 text-white shadow-xl backdrop-blur">
+                            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/80 text-white shadow-[0_0_30px_rgba(0,230,118,0.4)] backdrop-blur transition-transform duration-300 group-hover/video:scale-110">
                                 <PlayCircle className="ml-1 h-10 w-10" />
                             </div>
-                            <p className="text-lg font-medium text-white">Watch 5-minute Intro</p>
+                            <p className="text-lg font-medium text-white drop-shadow-lg">Watch 5-minute Intro</p>
+                        </div>
+                        <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
+                            <span className="rounded-full bg-emerald-500/90 px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">Video</span>
+                            <span className="text-sm text-white/80">5:00</span>
                         </div>
                     </div>
                     <CardContent className="pt-7">

@@ -26,7 +26,8 @@ export interface ModuleTemplate {
     title: string;
     topic: string;
     description: string;
-    videoUrl?: string; // Simulated video text or a real URL later
+    videoUrl?: string;
+    thumbnail?: string;
     infographics: Infographic[];
     scenario: Scenario;
     keyTakeaways: string[];

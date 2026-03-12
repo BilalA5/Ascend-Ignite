@@ -156,7 +156,7 @@ const StepImage = forwardRef<HTMLImageElement, StepImageProps>(
             alt={alt}
             className={className}
             src={src}
-            style={{ position: 'absolute', userSelect: 'none', maxWidth: 'unset', ...style }}
+            style={{ position: 'absolute', userSelect: 'none', maxWidth: 'unset', objectFit: 'cover', ...style }}
             {...props}
         />
     ),
@@ -189,7 +189,7 @@ function FeatureCard({ children, step, stepsData }: { children: React.ReactNode;
             style={{ '--x': useMotionTemplate`${mouseX}px`, '--y': useMotionTemplate`${mouseY}px` } as WrapperStyle}
         >
             <div className="relative w-full overflow-hidden rounded-3xl border border-slate-200 bg-white transition-colors duration-300">
-                <div className="m-8 md:m-10 min-h-[400px] md:min-h-[450px] w-full">
+                <div className="relative m-8 md:m-10 min-h-[400px] md:min-h-[450px] w-full overflow-hidden">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={step}

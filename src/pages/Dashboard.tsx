@@ -109,11 +109,7 @@ export const Dashboard = () => {
                         </div>
                         <div className="grid gap-6 md:grid-cols-1">
                             {moduleTemplates.map((module, index) => {
-                                const gradients = [
-                                    'from-blue-500 via-blue-600 to-indigo-600',
-                                    'from-blue-600 via-blue-700 to-indigo-700',
-                                    'from-indigo-500 via-blue-600 to-blue-700',
-                                ];
+                                const cardColor = 'bg-primary';
                                 return (
                                     <motion.div
                                         key={module.id}
@@ -133,10 +129,10 @@ export const Dashboard = () => {
                                                             <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                                         </>
                                                     ) : (
-                                                        <div className={`h-full w-full bg-gradient-to-br ${gradients[index % gradients.length]}`} />
+                                                        <div className={`h-full w-full ${cardColor}`} />
                                                     )}
                                                     <div className="absolute top-3 left-3 z-10">
-                                                        <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} text-sm font-bold text-white shadow-lg`}>
+                                                        <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${cardColor} text-sm font-bold text-white shadow-lg`}>
                                                             {index + 1}
                                                         </span>
                                                     </div>
@@ -151,7 +147,7 @@ export const Dashboard = () => {
                                                 <div className="flex flex-col justify-between p-6 md:p-7">
                                                     <div>
                                                         <div className="mb-2 flex items-center gap-2">
-                                                            <span className={`rounded-full bg-gradient-to-r ${gradients[index % gradients.length]} px-3 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white`}>
+                                                            <span className={`rounded-full ${cardColor} px-3 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white`}>
                                                                 Course {index + 1}
                                                             </span>
                                                             <span className="text-xs text-slate-400">

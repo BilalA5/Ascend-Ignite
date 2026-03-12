@@ -155,11 +155,6 @@ export const Certificates = () => {
                 <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
                     {moduleTemplates.map((module, index) => {
                         const isCompleted = completedModules.includes(module.id);
-                        const gradients = [
-                            'from-primary to-blue-500',
-                            'from-blue-600 to-indigo-600',
-                            'from-indigo-500 to-blue-600',
-                        ];
                         return (
                             <motion.div
                                 key={module.id}
@@ -168,7 +163,7 @@ export const Certificates = () => {
                                 transition={{ delay: index * 0.1 }}
                             >
                                 <Card className={`relative overflow-hidden transition-all ${isCompleted ? 'neon-border cursor-pointer hover:shadow-[0_20px_60px_rgba(37,99,235,0.12)]' : 'opacity-75'}`}>
-                                    <div className={`h-2 bg-gradient-to-r ${gradients[index % gradients.length]}`} />
+                                    <div className="h-2 bg-primary" />
                                     <CardContent className="p-6 text-center">
                                         <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${isCompleted ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' : 'bg-slate-100 text-slate-400'}`}>
                                             {isCompleted ? (

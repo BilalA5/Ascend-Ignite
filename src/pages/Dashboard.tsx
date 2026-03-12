@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Trophy, ArrowRight, PlayCircle, Calendar, Sparkles } from 'lucide-react';
+import { BookOpen, Trophy, ArrowRight, PlayCircle, Calendar, Sparkles, Zap } from 'lucide-react';
 import { getProfile } from '../services/profileService';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '../components/Card';
 import { Button } from '../components/Button';
@@ -24,20 +24,20 @@ export const Dashboard = () => {
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="lux-panel flex flex-col gap-6 rounded-[34px] px-7 py-8 md:flex-row md:items-end md:justify-between md:px-10"
+                    className="lux-panel neon-border flex flex-col gap-6 rounded-[34px] px-7 py-8 md:flex-row md:items-end md:justify-between md:px-10"
                 >
                     <div>
-                        <p className="text-xs uppercase tracking-[0.34em] text-slate-500">Dashboard</p>
+                        <p className="text-xs uppercase tracking-[0.34em] text-emerald-500 font-semibold">Dashboard</p>
                         <h1 className="mt-3 text-4xl font-bold text-slate-900 md:text-5xl">
-                            Welcome back, {firstName}
+                            Welcome back, <span className="bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">{firstName}</span>
                         </h1>
                         <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
-                            Your learning path now feels more like a premium coaching dashboard: clear priorities, cleaner hierarchy, and less visual clutter.
+                            Your personalized AI-readiness journey awaits. Track your progress, master new skills, and level up your career.
                         </p>
                     </div>
 
                     <div className="grid gap-3 sm:grid-cols-2">
-                        <StatPill label="Current track" value="AI Readiness" />
+                        <StatPill label="Current track" value="AI Readiness" accent />
                         <StatPill label="Momentum" value={`${overallProgress}%`} />
                     </div>
                 </motion.div>
@@ -46,10 +46,10 @@ export const Dashboard = () => {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.55fr)_360px]">
                 <div className="space-y-8">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
-                        <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(255,255,255,0.88))]">
+                        <Card className="neon-border bg-[linear-gradient(135deg,rgba(0,230,118,0.05),rgba(0,229,255,0.05),rgba(255,255,255,0.9))]">
                             <CardHeader>
-                                <CardTitle className="flex items-center gap-2 text-primary">
-                                    <BookOpen className="h-5 w-5" />
+                                <CardTitle className="flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-cyan-500 bg-clip-text text-transparent">
+                                    <Zap className="h-5 w-5 text-emerald-500" />
                                     Your AI-Readiness Profile
                                 </CardTitle>
                             </CardHeader>
@@ -58,8 +58,8 @@ export const Dashboard = () => {
                                     {profile.profileSummary || 'Complete more modules to build out your personalized profile summary.'}
                                 </p>
                                 <div className="mt-5 flex flex-wrap gap-3">
-                                    <Tag>{profile.learningStyle || 'Adaptive'} Learner</Tag>
-                                    <Tag>{profile.mindsetType || 'Growth-Oriented'}</Tag>
+                                    <Tag accent="green">{profile.learningStyle || 'Adaptive'} Learner</Tag>
+                                    <Tag accent="cyan">{profile.mindsetType || 'Growth-Oriented'}</Tag>
                                 </div>
                             </CardContent>
                         </Card>
@@ -67,28 +67,29 @@ export const Dashboard = () => {
 
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
                         <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-slate-900">
-                            <Sparkles className="h-5 w-5 text-primary" />
+                            <Sparkles className="h-5 w-5 text-emerald-500" />
                             Up Next for You
                         </h2>
-                        <Card className="overflow-hidden">
+                        <Card className="overflow-hidden neon-border group">
                             <div className="grid gap-0 md:grid-cols-[260px_minmax(0,1fr)]">
-                                <div className="flex min-h-[220px] items-center justify-center bg-[linear-gradient(180deg,rgba(37,99,235,0.88),rgba(30,64,175,0.96))] p-8 text-white">
-                                    <div className="text-center">
-                                        <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-white/14 backdrop-blur">
+                                <div className="flex min-h-[220px] items-center justify-center bg-gradient-to-br from-emerald-500 via-cyan-500 to-blue-600 p-8 text-white relative overflow-hidden">
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
+                                    <div className="text-center relative z-10">
+                                        <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur shadow-[0_0_30px_rgba(255,255,255,0.2)]">
                                             <PlayCircle className="h-10 w-10" />
                                         </div>
-                                        <p className="text-xs uppercase tracking-[0.28em] text-white/70">Recommended module</p>
+                                        <p className="text-xs uppercase tracking-[0.28em] text-white/80">Recommended module</p>
                                     </div>
                                 </div>
                                 <div className="flex flex-col justify-between p-7 md:p-9">
                                     <div>
-                                        <div className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-primary">Priority focus</div>
+                                        <div className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-emerald-600">Priority focus</div>
                                         <h3 className="text-2xl font-bold text-slate-900">{recommendedModule.title}</h3>
                                         <p className="mt-2 text-base leading-7 text-slate-600">{recommendedModule.description}</p>
                                     </div>
                                     <div className="mt-6">
                                         <Link to={`/module/${recommendedModule.id}`}>
-                                            <Button className="w-full sm:w-auto">Start Module</Button>
+                                            <Button className="w-full sm:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 shadow-[0_8px_25px_rgba(0,230,118,0.3)]">Start Module</Button>
                                         </Link>
                                     </div>
                                 </div>
@@ -141,10 +142,10 @@ export const Dashboard = () => {
 
                 <div className="space-y-8">
                     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
-                        <Card>
+                        <Card className="neon-border">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-slate-900">
-                                    <Trophy className="h-5 w-5 text-primary" />
+                                    <Trophy className="h-5 w-5 text-emerald-500" />
                                     Your Journey
                                 </CardTitle>
                             </CardHeader>
@@ -195,16 +196,23 @@ export const Dashboard = () => {
     );
 };
 
-const Tag = ({ children }: { children: React.ReactNode }) => (
-    <span className="rounded-full border border-white/70 bg-white/80 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-slate-600 shadow-[0_10px_24px_rgba(15,23,42,0.04)]">
-        {children}
-    </span>
-);
+const Tag = ({ children, accent = 'default' }: { children: React.ReactNode, accent?: 'green' | 'cyan' | 'default' }) => {
+    const accentStyles = {
+        green: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+        cyan: 'border-cyan-200 bg-cyan-50 text-cyan-700',
+        default: 'border-white/70 bg-white/80 text-slate-600',
+    };
+    return (
+        <span className={`rounded-full border px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] shadow-[0_10px_24px_rgba(15,23,42,0.04)] ${accentStyles[accent]}`}>
+            {children}
+        </span>
+    );
+};
 
-const StatPill = ({ label, value }: { label: string, value: string }) => (
-    <div className="rounded-[22px] border border-white/70 bg-white/75 px-5 py-4 shadow-[0_18px_36px_rgba(15,23,42,0.05)]">
+const StatPill = ({ label, value, accent }: { label: string, value: string, accent?: boolean }) => (
+    <div className={`rounded-[22px] border px-5 py-4 shadow-[0_18px_36px_rgba(15,23,42,0.05)] ${accent ? 'border-emerald-200/60 bg-gradient-to-br from-emerald-50 to-cyan-50' : 'border-white/70 bg-white/75'}`}>
         <p className="text-[11px] uppercase tracking-[0.24em] text-slate-500">{label}</p>
-        <p className="mt-2 text-xl font-bold text-slate-900">{value}</p>
+        <p className={`mt-2 text-xl font-bold ${accent ? 'bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent' : 'text-slate-900'}`}>{value}</p>
     </div>
 );
 

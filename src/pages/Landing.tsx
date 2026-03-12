@@ -155,8 +155,8 @@ export const Landing = () => {
             </section>
 
             {/* ── How it works — FeatureSteps ── */}
-            <section className="relative overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,#eef5ff_0%,#f8fbff_50%,#ffffff_100%)]" />
+            <section className="relative">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,#eef5ff_0%,#f8fbff_50%,#ffffff_100%)] pointer-events-none" />
                 <div className="relative z-10">
                     <FeatureSteps
                         title="How it works"

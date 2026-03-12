@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { FeatureSteps } from '../components/FeatureSteps';
+import { LandingNavbar } from '../components/LandingNavbar';
 import { getProfile } from '../services/profileService';
 
 const HeroSpline = lazy(() =>
@@ -41,6 +42,8 @@ export const Landing = () => {
 
     return (
         <div className="flex min-h-screen flex-col">
+            <LandingNavbar />
+
             {/* ── Hero ── */}
             <section ref={revealRef} className="relative min-h-[185vh] overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#bfe9ff_0%,#87cefa_34%,#9fd7fb_54%,#dfeffd_72%,#ffffff_100%)]" />
@@ -53,16 +56,6 @@ export const Landing = () => {
                         className="sticky top-0 flex min-h-screen flex-col overflow-hidden"
                     >
                         <div className="absolute inset-x-0 bottom-0 z-10 h-24 bg-[linear-gradient(180deg,rgba(135,206,250,0),rgba(135,206,250,0.78)_72%,rgba(135,206,250,0.97)_100%)]" />
-                        <div className="absolute right-4 top-4 z-20 flex gap-3 md:right-6 md:top-6">
-                            <Link to="/signup">
-                                <Button size="sm" className="shadow-[0_16px_36px_rgba(37,99,235,0.22)]">Sign up</Button>
-                            </Link>
-                            <Link to="/onboarding">
-                                <Button variant="outline" size="sm" className="border-white/40 bg-white/30 text-slate-900 shadow-[0_16px_36px_rgba(15,23,42,0.08)] backdrop-blur-xl">
-                                    Log in
-                                </Button>
-                            </Link>
-                        </div>
                         <motion.div
                             style={{ opacity: introOverlayOpacity }}
                             className="absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_50%,transparent_22%,rgba(15,23,42,0.24)_100%)]"

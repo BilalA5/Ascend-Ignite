@@ -15,6 +15,7 @@ import { Community } from './pages/Community';
 import { Networking } from './pages/Networking';
 import { Advising } from './pages/Advising';
 import { Certificates } from './pages/Certificates';
+import { ChatBot } from './components/ChatBot';
 
 // Component to protect routes requiring a profile
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -30,6 +31,7 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const profile = getProfile();
   const isPublicPage = ['/', '/signup', '/onboarding'].includes(location.pathname);
   const showSidebar = profile && !isPublicPage;
+  const isModulePage = location.pathname.startsWith('/module/') && !location.pathname.includes('/quiz');
 
   return (
     <div className="min-h-screen bg-slate-50 flex font-body text-slate-900">
@@ -40,6 +42,9 @@ const AppLayout = ({ children }: { children: React.ReactNode }) => {
           {children}
         </main>
       </div>
+      {profile && !isPublicPage && !isModulePage && (
+        <ChatBot mode="global" />
+      )}
     </div>
   );
 };

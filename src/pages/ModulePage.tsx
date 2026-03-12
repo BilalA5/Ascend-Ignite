@@ -7,6 +7,7 @@ import { moduleTemplates } from '../data/mockData';
 
 import { Card, CardHeader, CardTitle, CardContent } from '../components/Card';
 import { Button } from '../components/Button';
+import { ChatBot } from '../components/ChatBot';
 
 export const ModulePage = () => {
     const { id } = useParams<{ id: string }>();
@@ -167,6 +168,12 @@ export const ModulePage = () => {
                     </div>
                 </div>
             </motion.section>
+
+            <ChatBot
+                mode="course"
+                courseTitle={moduleData.title}
+                courseContext={moduleData.description}
+            />
         </div>
     );
 };

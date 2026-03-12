@@ -5,6 +5,7 @@ import { getProfile } from '../services/profileService';
 import { moduleTemplates } from '../data/mockData';
 import { Card, CardContent } from '../components/Card';
 import { Button } from '../components/Button';
+import { getCompletedModuleIds, getModuleProgress } from '../services/progressService';
 
 const Certificate = ({ name, courseName, date, onDownload }: {
     name: string;
@@ -104,8 +105,7 @@ export const Certificates = () => {
 
     if (!profile) return null;
 
-    // For now, simulate that no modules are completed (can be extended with real state later)
-    const completedModules: string[] = [];
+    const completedModules = getCompletedModuleIds();
 
     const handleDownload = () => {
         // Simple print-based download
@@ -143,7 +143,11 @@ export const Certificates = () => {
                     <Certificate
                         name={profile.name}
                         courseName={moduleTemplates.find(m => m.id === selectedCert)?.title || 'Course'}
-                        date={new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                        date={(() => {
+                            const mp = getModuleProgress(selectedCert);
+                            const d = mp?.completedAt ? new Date(mp.completedAt) : new Date();
+                            return d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+                        })()}
                         onDownload={handleDownload}
                     />
                 </motion.div>

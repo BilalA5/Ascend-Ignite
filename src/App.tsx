@@ -14,6 +14,7 @@ import { QuizPage } from './pages/QuizPage';
 import { Community } from './pages/Community';
 import { Networking } from './pages/Networking';
 import { Advising } from './pages/Advising';
+import { Certificates } from './pages/Certificates';
 
 // Component to protect routes requiring a profile
 const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
@@ -98,6 +99,14 @@ export default function App() {
           element={
             <ProtectedRoute>
               <Advising />
+            </ProtectedRoute>
+          }
+        />
+        <Route
+          path="/certificates"
+          element={
+            <ProtectedRoute>
+              <Certificates />
             </ProtectedRoute>
           }
         />

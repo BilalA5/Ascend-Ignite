@@ -3,15 +3,14 @@ import { Link, Navigate } from 'react-router-dom';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import {
     ArrowRight,
-    BookOpen,
     Target,
     Users,
     ChevronDown,
-    Award,
     Brain,
     Flame,
 } from 'lucide-react';
 import { Button } from '../components/Button';
+import { FeatureSteps } from '../components/FeatureSteps';
 import { getProfile } from '../services/profileService';
 
 const HeroSpline = lazy(() =>
@@ -154,59 +153,34 @@ export const Landing = () => {
                 </div>
             </section>
 
-            {/* ── How it works ── */}
-            <section className="relative overflow-hidden py-16 md:py-24">
+            {/* ── How it works — FeatureSteps ── */}
+            <section className="relative overflow-hidden">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#eef5ff_0%,#f8fbff_50%,#ffffff_100%)]" />
-                <div className="relative z-10 container mx-auto max-w-4xl px-4 md:px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-12"
-                    >
-                        <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">How it works</p>
-                        <h2 className="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">Sign up. Learn. Get certified.</h2>
-                    </motion.div>
-
-                    {/* Steps — vertical timeline on mobile, horizontal on desktop */}
-                    <div className="relative">
-                        {/* Connecting line (desktop) */}
-                        <div className="absolute top-8 left-[16%] right-[16%] hidden md:block">
-                            <motion.div
-                                initial={{ scaleX: 0 }}
-                                whileInView={{ scaleX: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ duration: 0.6, delay: 0.2 }}
-                                className="h-[2px] w-full origin-left bg-blue-200 rounded-full"
-                            />
-                        </div>
-
-                        <div className="grid gap-8 md:grid-cols-3">
-                            {[
-                                { num: '01', title: 'Take a 2-min quiz', desc: 'We figure out where you are and what to focus on.', icon: <Target className="h-5 w-5" /> },
-                                { num: '02', title: 'Work through courses', desc: 'Short modules with videos, scenarios, and quizzes.', icon: <BookOpen className="h-5 w-5" /> },
-                                { num: '03', title: 'Earn your certificates', desc: 'Pass the quizzes, get proof you did the work.', icon: <Award className="h-5 w-5" /> },
-                            ].map((step, i) => (
-                                <motion.div
-                                    key={step.num}
-                                    initial={{ opacity: 0, y: 16 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.12 }}
-                                    className="relative text-center"
-                                >
-                                    <div className="relative z-10 mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl border border-white/60 bg-white/70 backdrop-blur-xl shadow-[0_4px_20px_rgba(15,23,42,0.06)]">
-                                        <div className="text-primary">{step.icon}</div>
-                                        <div className="absolute -top-2 -right-2 flex h-7 w-7 items-center justify-center rounded-lg bg-primary text-[11px] font-bold text-white shadow-sm">
-                                            {step.num}
-                                        </div>
-                                    </div>
-                                    <h3 className="text-base font-bold text-slate-900">{step.title}</h3>
-                                    <p className="mt-1 text-sm text-slate-500">{step.desc}</p>
-                                </motion.div>
-                            ))}
-                        </div>
-                    </div>
+                <div className="relative z-10">
+                    <FeatureSteps
+                        title="How it works"
+                        autoPlayInterval={4000}
+                        features={[
+                            {
+                                step: 'Step 1',
+                                title: 'Find your starting point',
+                                content: 'Quick onboarding quiz figures out where you are and recommends what to focus on first.',
+                                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+                            },
+                            {
+                                step: 'Step 2',
+                                title: 'Learn through real scenarios',
+                                content: 'Short courses with videos, interactive exercises, and scenario-based learning — not just reading.',
+                                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800',
+                            },
+                            {
+                                step: 'Step 3',
+                                title: 'Prove what you know',
+                                content: 'Pass the quizzes, earn certificates, and share them with employers or on LinkedIn.',
+                                image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+                            },
+                        ]}
+                    />
                 </div>
             </section>
 

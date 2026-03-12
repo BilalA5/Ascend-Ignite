@@ -13,16 +13,16 @@ export const ProgressBar: React.FC<ProgressBarProps> = ({ progress, className, s
 
     return (
         <div className={cn("w-full", className)}>
-            <div className="h-2 w-full overflow-hidden rounded-full bg-slate-200">
+            <div className="h-3 w-full overflow-hidden rounded-full bg-slate-200/60">
                 <motion.div
-                    className="h-full bg-primary"
+                    className="h-full rounded-full bg-gradient-to-r from-emerald-400 to-green-500 shadow-[0_0_12px_rgba(16,185,129,0.45)]"
                     initial={{ width: 0 }}
                     animate={{ width: `${normalizedProgress}%` }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                 />
             </div>
             {showLabel && (
-                <p className="mt-2 text-right text-xs text-slate-500 font-medium">
+                <p className="mt-2 text-right text-xs text-emerald-600 font-medium">
                     {Math.round(normalizedProgress)}% Completed
                 </p>
             )}

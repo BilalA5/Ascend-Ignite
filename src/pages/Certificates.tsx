@@ -157,8 +157,8 @@ export const Certificates = () => {
                         const isCompleted = completedModules.includes(module.id);
                         const gradients = [
                             'from-primary to-blue-500',
-                            'from-violet-500 to-purple-500',
-                            'from-amber-500 to-orange-500',
+                            'from-blue-600 to-indigo-600',
+                            'from-indigo-500 to-blue-600',
                         ];
                         return (
                             <motion.div

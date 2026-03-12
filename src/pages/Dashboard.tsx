@@ -111,8 +111,8 @@ export const Dashboard = () => {
                             {moduleTemplates.map((module, index) => {
                                 const gradients = [
                                     'from-blue-500 via-blue-600 to-indigo-600',
-                                    'from-violet-500 via-purple-500 to-fuchsia-500',
-                                    'from-amber-500 via-orange-500 to-red-500',
+                                    'from-blue-600 via-blue-700 to-indigo-700',
+                                    'from-indigo-500 via-blue-600 to-blue-700',
                                 ];
                                 return (
                                     <motion.div

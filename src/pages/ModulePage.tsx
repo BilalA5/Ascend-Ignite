@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useParams, Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { PlayCircle, Target, Brain, Info, ArrowRight } from 'lucide-react';
+import { Target, Brain, Info, ArrowRight } from 'lucide-react';
 import { getProfile } from '../services/profileService';
 import { moduleTemplates } from '../data/mockData';
 
 import { Card, CardHeader, CardTitle, CardContent } from '../components/Card';
 import { Button } from '../components/Button';
 import { ChatBot } from '../components/ChatBot';
+import VideoPlayer from '../components/VideoPlayer';
 
 export const ModulePage = () => {
     const { id } = useParams<{ id: string }>();
@@ -39,29 +40,17 @@ export const ModulePage = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
             >
-                <Card className="overflow-hidden neon-border">
-                    <div className="relative flex aspect-video items-center justify-center bg-slate-900 cursor-pointer group/video">
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent z-10" />
-                        <img
-                            src={moduleData.thumbnail || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000'}
-                            alt={`${moduleData.title} thumbnail`}
-                            className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover/video:scale-105"
-                        />
-                        <div className="relative z-20 flex flex-col items-center">
-                            <div className="mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-primary/80 text-white shadow-[0_0_30px_rgba(37,99,235,0.4)] backdrop-blur transition-transform duration-300 group-hover/video:scale-110">
-                                <PlayCircle className="ml-1 h-10 w-10" />
-                            </div>
-                            <p className="text-lg font-medium text-white drop-shadow-lg">Watch 5-minute Intro</p>
-                        </div>
-                        <div className="absolute bottom-4 left-4 z-20 flex items-center gap-2">
-                            <span className="rounded-full bg-primary/90 px-3 py-1 text-xs font-bold text-white uppercase tracking-wider">Video</span>
-                            <span className="text-sm text-white/80">5:00</span>
-                        </div>
-                    </div>
-                    <CardContent className="pt-7">
-                        <p className="text-lg leading-8 text-slate-700">{moduleData.description}</p>
-                    </CardContent>
-                </Card>
+                <div className="space-y-6">
+                    <VideoPlayer
+                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+                        poster={moduleData.thumbnail || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000'}
+                    />
+                    <Card className="neon-border">
+                        <CardContent className="pt-7">
+                            <p className="text-lg leading-8 text-slate-700">{moduleData.description}</p>
+                        </CardContent>
+                    </Card>
+                </div>
             </motion.section>
 
             <motion.section

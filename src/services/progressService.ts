@@ -14,7 +14,8 @@ export interface ProgressData {
 }
 
 export const getProgress = (): ProgressData => {
-    return getItem<ProgressData>(PROGRESS_KEY) || { completedModules: [] };
+    const data = getItem<ProgressData>(PROGRESS_KEY);
+    return { completedModules: Array.isArray(data?.completedModules) ? data.completedModules : [] };
 };
 
 export const completeModule = (moduleId: string, quizScore: number): void => {

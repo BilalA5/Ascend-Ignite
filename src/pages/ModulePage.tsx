@@ -27,9 +27,9 @@ export const ModulePage = () => {
         <div className="container mx-auto max-w-6xl space-y-10 px-4 py-8">
             <header className="text-center">
                 <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mx-auto max-w-3xl">
-                    <p className="text-xs uppercase tracking-[0.3em] text-slate-500">Module Experience</p>
+                    <p className="text-xs uppercase tracking-[0.3em] text-emerald-500 font-semibold">Course Experience</p>
                     <h1 className="mt-4 text-4xl font-bold text-slate-900 md:text-6xl">{moduleData.title}</h1>
-                    <p className="mt-4 text-lg leading-8 text-slate-600">{moduleData.topic}</p>
+                    <p className="mt-4 text-lg leading-8 bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-medium">{moduleData.topic}</p>
                 </motion.div>
             </header>
 
@@ -70,11 +70,11 @@ export const ModulePage = () => {
                 className="space-y-6"
             >
                 <h2 className="flex items-center gap-2 text-2xl font-bold">
-                    <Info className="h-6 w-6 text-primary" /> Key Concepts
+                    <Info className="h-6 w-6 text-emerald-500" /> Key Concepts
                 </h2>
                 <div className="grid gap-6 md:grid-cols-2">
                     {moduleData.infographics.map((info, i) => (
-                        <Card key={i} className="bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(239,246,255,0.92))]">
+                        <Card key={i} className="neon-border bg-[linear-gradient(180deg,rgba(255,255,255,0.95),rgba(0,230,118,0.03))] hover:shadow-[0_12px_40px_rgba(0,230,118,0.1)] transition-shadow">
                             <CardHeader>
                                 <CardTitle className="text-lg">{info.title}</CardTitle>
                             </CardHeader>
@@ -91,14 +91,14 @@ export const ModulePage = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
             >
-                <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.08),rgba(255,255,255,0.9))]">
+                <Card className="neon-border bg-[linear-gradient(135deg,rgba(0,230,118,0.04),rgba(0,229,255,0.04),rgba(255,255,255,0.92))]">
                     <CardHeader>
-                        <CardTitle className="flex items-center gap-2 text-xl text-primary">
-                            <Target className="h-6 w-6" /> Scenario Exercise
+                        <CardTitle className="flex items-center gap-2 text-xl bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                            <Target className="h-6 w-6 text-emerald-500" /> Scenario Exercise
                         </CardTitle>
                     </CardHeader>
                     <CardContent className="space-y-6">
-                        <div className="rounded-[24px] border border-white/70 bg-white/90 p-6 text-lg leading-8 text-slate-800 shadow-[0_18px_42px_rgba(15,23,42,0.05)]">
+                        <div className="rounded-[24px] border border-emerald-100/50 bg-white/90 p-6 text-lg leading-8 text-slate-800 shadow-[0_18px_42px_rgba(15,23,42,0.05)]">
                             {moduleData.scenario.context}
                         </div>
 
@@ -108,8 +108,8 @@ export const ModulePage = () => {
                                     <button
                                         onClick={() => setActiveScenario(i)}
                                         className={`w-full rounded-[24px] border p-5 text-left transition-all ${activeScenario === i
-                                            ? 'border-primary bg-primary text-white shadow-[0_18px_42px_rgba(37,99,235,0.22)]'
-                                            : 'border-white/70 bg-white/80 text-slate-700 hover:border-primary/40 hover:bg-white'
+                                            ? 'border-emerald-400 bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-[0_18px_42px_rgba(0,230,118,0.22)]'
+                                            : 'border-white/70 bg-white/80 text-slate-700 hover:border-emerald-300 hover:bg-white'
                                             }`}
                                     >
                                         {opt.text}
@@ -119,9 +119,9 @@ export const ModulePage = () => {
                                         <motion.div
                                             initial={{ opacity: 0, height: 0 }}
                                             animate={{ opacity: 1, height: 'auto' }}
-                                            className="mt-2 rounded-[22px] border border-white/70 bg-white/90 p-4 text-slate-700"
+                                            className="mt-2 rounded-[22px] border border-emerald-100 bg-emerald-50/50 p-4 text-slate-700"
                                         >
-                                            <span className="mr-2 font-bold text-primary">Feedback:</span>
+                                            <span className="mr-2 font-bold text-emerald-600">Feedback:</span>
                                             {opt.feedback}
                                         </motion.div>
                                     )}
@@ -136,10 +136,11 @@ export const ModulePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="rounded-[34px] bg-[linear-gradient(180deg,#1d4ed8_0%,#0f172a_100%)] p-8 text-white md:p-12"
+                className="rounded-[34px] bg-gradient-to-br from-slate-900 via-emerald-950 to-slate-900 p-8 text-white md:p-12 relative overflow-hidden"
             >
-                <div className="flex flex-col items-center space-y-8 text-center">
-                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-primary/20 text-primary">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_50%,rgba(0,230,118,0.1),transparent_40%),radial-gradient(circle_at_80%_50%,rgba(0,229,255,0.08),transparent_40%)]" />
+                <div className="relative flex flex-col items-center space-y-8 text-center">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20 text-emerald-400 shadow-[0_0_30px_rgba(0,230,118,0.2)]">
                         <Brain className="h-8 w-8" />
                     </div>
                     <div>
@@ -147,20 +148,20 @@ export const ModulePage = () => {
                         <ul className="mx-auto max-w-2xl space-y-4 text-left">
                             {moduleData.keyTakeaways.map((takeaway, i) => (
                                 <li key={i} className="flex gap-3">
-                                    <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-primary" />
+                                    <div className="mt-2 h-2 w-2 shrink-0 rounded-full bg-emerald-400 shadow-[0_0_6px_rgba(0,230,118,0.6)]" />
                                     <span className="text-lg leading-8 text-slate-200">{takeaway}</span>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    <div className="h-px w-full bg-white/10" />
+                    <div className="h-px w-full bg-emerald-500/20" />
 
                     <div className="pt-2">
                         <h3 className="mb-4 text-xl font-bold">Ready to test your knowledge?</h3>
                         <Link to={`/module/${moduleData.id}/quiz`}>
-                            <Button size="lg" className="w-full px-12 text-lg sm:w-auto">
-                                Start Module Quiz <ArrowRight className="ml-2 h-5 w-5" />
+                            <Button size="lg" className="w-full px-12 text-lg sm:w-auto bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 shadow-[0_0_30px_rgba(0,230,118,0.3)]">
+                                Start Course Quiz <ArrowRight className="ml-2 h-5 w-5" />
                             </Button>
                         </Link>
                     </div>

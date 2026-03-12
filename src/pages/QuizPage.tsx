@@ -7,6 +7,7 @@ import { QuizQuestion } from '../types';
 import { Card, CardContent } from '../components/Card';
 import { Button } from '../components/Button';
 import { ProgressBar } from '../components/ProgressBar';
+import { completeModule } from '../services/progressService';
 
 export const QuizPage = () => {
     const { id } = useParams<{ id: string }>();
@@ -45,6 +46,9 @@ export const QuizPage = () => {
 
     const handleNext = () => {
         if (isLastQuestion) {
+            const finalScore = score;
+            const percentage = Math.round((finalScore / quiz.questions.length) * 100);
+            completeModule(id!, percentage);
             setShowResults(true);
         } else {
             setCurrentQuestionIndex(prev => prev + 1);

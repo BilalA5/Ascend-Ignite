@@ -71,12 +71,12 @@ export const QuizPage = () => {
                     className="w-full max-w-md"
                 >
                     <Card className="text-center overflow-hidden">
-                        <div className={`p-8 ${passed ? 'bg-gradient-to-br from-emerald-50 to-blue-50' : 'bg-slate-50'}`}>
-                            <div className={`w-24 h-24 mx-auto mb-6 flex items-center justify-center rounded-full ${passed ? 'bg-emerald-100 text-emerald-600 shadow-[0_0_30px_rgba(0,230,118,0.2)]' : 'bg-slate-200 text-slate-500'}`}>
+                        <div className={`p-8 ${passed ? 'bg-gradient-to-br bg-blue-50' : 'bg-slate-50'}`}>
+                            <div className={`w-24 h-24 mx-auto mb-6 flex items-center justify-center rounded-full ${passed ? 'bg-blue-100 text-primary shadow-[0_0_30px_rgba(37,99,235,0.2)]' : 'bg-slate-200 text-slate-500'}`}>
                                 <Trophy className="w-12 h-12" />
                             </div>
                             <h2 className="text-3xl font-bold font-heading mb-2">Quiz Complete!</h2>
-                            <p className="text-slate-600">You scored <span className={passed ? 'text-emerald-600 font-bold' : ''}>{percentage}%</span></p>
+                            <p className="text-slate-600">You scored <span className={passed ? 'text-primary font-bold' : ''}>{percentage}%</span></p>
                         </div>
                         <CardContent className="p-8">
                             <p className="text-lg text-slate-800 mb-8">
@@ -140,8 +140,8 @@ export const QuizPage = () => {
 
                                     if (isAnswered) {
                                         if (isCorrect) {
-                                            stateClass = "border-emerald-500 bg-emerald-50 text-emerald-800 shadow-sm ring-1 ring-emerald-500";
-                                            Icon = <CheckCircle2 className="w-5 h-5 text-emerald-500" />;
+                                            stateClass = "border-blue-500 bg-blue-50 text-blue-800 shadow-sm ring-1 ring-blue-500";
+                                            Icon = <CheckCircle2 className="w-5 h-5 text-blue-500" />;
                                         } else if (isSelected && !isCorrect) {
                                             stateClass = "border-slate-400 bg-slate-100 text-slate-800 shadow-sm";
                                             Icon = <XCircle className="w-5 h-5 text-slate-500" />;
@@ -173,7 +173,7 @@ export const QuizPage = () => {
                                         animate={{ opacity: 1, height: 'auto', marginTop: 32 }}
                                         className="overflow-hidden"
                                     >
-                                        <div className={`rounded-xl border p-4 ${selectedAnswer === currentQuestion.correctAnswerIndex ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-slate-200 bg-slate-100 text-slate-800'}`}>
+                                        <div className={`rounded-xl border p-4 ${selectedAnswer === currentQuestion.correctAnswerIndex ? 'border-blue-200 bg-blue-50 text-blue-800' : 'border-slate-200 bg-slate-100 text-slate-800'}`}>
                                             <h4 className="font-bold mb-1">Explanation</h4>
                                             <p>{currentQuestion.explanation}</p>
                                         </div>

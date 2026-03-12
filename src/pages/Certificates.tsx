@@ -60,7 +60,7 @@ const Certificate = ({ name, courseName, date, onDownload }: {
                         <p className="text-sm text-slate-500">
                             has successfully completed the course
                         </p>
-                        <p className="font-heading text-xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent md:text-2xl">
+                        <p className="font-heading text-xl font-bold bg-gradient-to-r text-primary md:text-2xl">
                             {courseName}
                         </p>
                     </div>
@@ -119,7 +119,7 @@ export const Certificates = () => {
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
-                    <p className="text-xs uppercase tracking-[0.34em] text-emerald-500 font-semibold">Achievements</p>
+                    <p className="text-xs uppercase tracking-[0.34em] text-primary font-semibold">Achievements</p>
                     <h1 className="mt-3 text-4xl font-bold text-slate-900 md:text-5xl">
                         Your <span className="bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">Certificates</span>
                     </h1>
@@ -136,7 +136,7 @@ export const Certificates = () => {
                 >
                     <button
                         onClick={() => setSelectedCert(null)}
-                        className="mb-6 text-sm font-medium text-emerald-600 hover:text-emerald-700"
+                        className="mb-6 text-sm font-medium text-primary hover:text-primary-hover"
                     >
                         &larr; Back to all certificates
                     </button>
@@ -156,7 +156,7 @@ export const Certificates = () => {
                     {moduleTemplates.map((module, index) => {
                         const isCompleted = completedModules.includes(module.id);
                         const gradients = [
-                            'from-emerald-500 to-blue-500',
+                            'from-primary to-blue-500',
                             'from-violet-500 to-purple-500',
                             'from-amber-500 to-orange-500',
                         ];
@@ -167,7 +167,7 @@ export const Certificates = () => {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: index * 0.1 }}
                             >
-                                <Card className={`relative overflow-hidden transition-all ${isCompleted ? 'neon-border cursor-pointer hover:shadow-[0_20px_60px_rgba(0,230,118,0.12)]' : 'opacity-75'}`}>
+                                <Card className={`relative overflow-hidden transition-all ${isCompleted ? 'neon-border cursor-pointer hover:shadow-[0_20px_60px_rgba(37,99,235,0.12)]' : 'opacity-75'}`}>
                                     <div className={`h-2 bg-gradient-to-r ${gradients[index % gradients.length]}`} />
                                     <CardContent className="p-6 text-center">
                                         <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${isCompleted ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' : 'bg-slate-100 text-slate-400'}`}>

@@ -101,41 +101,87 @@ export const Dashboard = () => {
                         <div className="mb-5 flex items-end justify-between gap-4">
                             <div>
                                 <h2 className="text-2xl font-bold text-slate-900">Learning Path</h2>
-                                <p className="mt-1 text-slate-600">Three wide modules, arranged as premium editorial panels instead of boxed tiles.</p>
+                                <p className="mt-1 text-slate-600">Master each course to build your AI-readiness toolkit.</p>
                             </div>
                         </div>
-                        <div className="space-y-5">
-                            {moduleTemplates.map((module, index) => (
-                                <Card key={module.id} className="group">
-                                    <div className="grid gap-0 md:grid-cols-[96px_minmax(0,1fr)_190px]">
-                                        <div className="flex items-center justify-center bg-[linear-gradient(180deg,rgba(255,255,255,0.65),rgba(37,99,235,0.08))] p-6">
-                                            <div className="flex h-14 w-14 items-center justify-center rounded-2xl border border-white/80 bg-white text-lg font-bold text-primary shadow-[0_14px_32px_rgba(37,99,235,0.12)]">
-                                                {index + 1}
+                        <div className="grid gap-6 md:grid-cols-1">
+                            {moduleTemplates.map((module, index) => {
+                                const gradients = [
+                                    'from-emerald-500 via-cyan-500 to-blue-500',
+                                    'from-violet-500 via-purple-500 to-fuchsia-500',
+                                    'from-amber-500 via-orange-500 to-red-500',
+                                ];
+                                return (
+                                    <motion.div
+                                        key={module.id}
+                                        whileHover={{ y: -4, scale: 1.01 }}
+                                        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+                                    >
+                                        <Card className="group overflow-hidden neon-border hover:shadow-[0_20px_60px_rgba(0,230,118,0.12)]">
+                                            <div className="grid gap-0 md:grid-cols-[200px_minmax(0,1fr)]">
+                                                <div className="relative min-h-[180px] overflow-hidden">
+                                                    {module.thumbnail ? (
+                                                        <>
+                                                            <img
+                                                                src={module.thumbnail}
+                                                                alt={module.title}
+                                                                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                                            />
+                                                            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+                                                        </>
+                                                    ) : (
+                                                        <div className={`h-full w-full bg-gradient-to-br ${gradients[index % gradients.length]}`} />
+                                                    )}
+                                                    <div className="absolute top-3 left-3 z-10">
+                                                        <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br ${gradients[index % gradients.length]} text-sm font-bold text-white shadow-lg`}>
+                                                            {index + 1}
+                                                        </span>
+                                                    </div>
+                                                    {module.thumbnail && (
+                                                        <div className="absolute bottom-3 left-3 z-10">
+                                                            <span className="flex items-center gap-1 rounded-full bg-black/60 px-2.5 py-1 text-xs font-medium text-white backdrop-blur">
+                                                                <PlayCircle className="h-3.5 w-3.5" /> Video
+                                                            </span>
+                                                        </div>
+                                                    )}
+                                                </div>
+                                                <div className="flex flex-col justify-between p-6 md:p-7">
+                                                    <div>
+                                                        <div className="mb-2 flex items-center gap-2">
+                                                            <span className={`rounded-full bg-gradient-to-r ${gradients[index % gradients.length]} px-3 py-0.5 text-[10px] font-bold uppercase tracking-[0.2em] text-white`}>
+                                                                Course {index + 1}
+                                                            </span>
+                                                            <span className="text-xs text-slate-400">
+                                                                {module.infographics.length} lessons
+                                                            </span>
+                                                        </div>
+                                                        <h3 className="text-xl font-bold text-slate-900 transition-colors group-hover:text-emerald-600">
+                                                            {module.title}
+                                                        </h3>
+                                                        <p className="mt-1 text-sm font-semibold text-emerald-600/80">
+                                                            {module.topic}
+                                                        </p>
+                                                        <p className="mt-3 text-sm leading-6 text-slate-600 line-clamp-2">
+                                                            {module.description}
+                                                        </p>
+                                                    </div>
+                                                    <div className="mt-4">
+                                                        <Link to={`/module/${module.id}`} className="w-full">
+                                                            <Button
+                                                                variant={index === 0 ? 'primary' : 'outline'}
+                                                                className={`w-full justify-between text-sm ${index === 0 ? 'bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-600 hover:to-cyan-600 shadow-[0_8px_25px_rgba(0,230,118,0.25)]' : ''}`}
+                                                            >
+                                                                {index === 0 ? 'Continue Course' : 'Start Course'}
+                                                                <ArrowRight className="h-4 w-4" />
+                                                            </Button>
+                                                        </Link>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="p-7 md:p-8">
-                                            <div className="mb-2 text-xs font-bold uppercase tracking-[0.26em] text-slate-500">Module {index + 1}</div>
-                                            <h3 className="text-2xl font-bold text-slate-900 transition-colors group-hover:text-primary">
-                                                {module.title}
-                                            </h3>
-                                            <p className="mt-2 text-sm font-semibold uppercase tracking-[0.18em] text-primary/80">
-                                                {module.topic}
-                                            </p>
-                                            <p className="mt-4 max-w-3xl text-base leading-7 text-slate-600">
-                                                {module.description}
-                                            </p>
-                                        </div>
-                                        <div className="flex items-center p-7 pt-0 md:p-8">
-                                            <Link to={`/module/${module.id}`} className="w-full">
-                                                <Button variant={index === 0 ? 'primary' : 'outline'} className="w-full justify-between text-sm">
-                                                    {index === 0 ? 'Continue Module' : 'View Module'}
-                                                    <ArrowRight className="h-4 w-4" />
-                                                </Button>
-                                            </Link>
-                                        </div>
-                                    </div>
-                                </Card>
-                            ))}
+                                        </Card>
+                                    </motion.div>
+                                );
+                            })}
                         </div>
                     </motion.div>
                 </div>

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { Navbar } from './components/Navbar';
 import { Sidebar } from './components/Sidebar';
@@ -29,14 +30,18 @@ const ProtectedRoute = ({ children }: { children: React.ReactNode }) => {
 const AppLayout = ({ children }: { children: React.ReactNode }) => {
   const location = useLocation();
   const profile = getProfile();
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const isPublicPage = ['/', '/signup', '/onboarding'].includes(location.pathname);
   const showSidebar = profile && !isPublicPage;
   const isModulePage = location.pathname.startsWith('/module/') && !location.pathname.includes('/quiz');
 
   return (
     <div className="min-h-screen bg-slate-50 flex font-body text-slate-900">
-      {showSidebar && <Sidebar />}
-      <div className={`flex-1 flex flex-col ${showSidebar ? 'ml-[260px]' : ''}`}>
+      {showSidebar && <Sidebar onCollapseChange={setSidebarCollapsed} />}
+      <div
+        className="flex-1 flex flex-col transition-[margin] duration-300 ease-in-out"
+        style={{ marginLeft: showSidebar ? (sidebarCollapsed ? 78 : 264) : 0 }}
+      >
         <Navbar />
         <main className="flex-1">
           {children}

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
@@ -12,10 +12,18 @@ import {
 } from 'lucide-react';
 import { getProfile, clearProfile } from '../services/profileService';
 
-export const Sidebar = () => {
+interface SidebarProps {
+    onCollapseChange?: (collapsed: boolean) => void;
+}
+
+export const Sidebar = ({ onCollapseChange }: SidebarProps) => {
     const location = useLocation();
     const profile = getProfile();
     const [collapsed, setCollapsed] = useState(false);
+
+    useEffect(() => {
+        onCollapseChange?.(collapsed);
+    }, [collapsed, onCollapseChange]);
 
     if (!profile) return null;
     if (['/', '/signup', '/onboarding'].includes(location.pathname)) return null;

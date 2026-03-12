@@ -8,6 +8,11 @@
   --color-background: #f8fbff;
   --color-text-main: #0f172a;
   --color-text-muted: #64748b;
+  --color-neon-green: #00e676;
+  --color-neon-cyan: #00e5ff;
+  --color-neon-purple: #d500f9;
+  --color-neon-pink: #ff1744;
+  --color-neon-yellow: #eeff41;
 
   --font-heading: "Fraunces", serif;
   --font-body: "Manrope", sans-serif;
@@ -50,17 +55,18 @@
   }
 
   ::selection {
-    background: rgba(37, 99, 235, 0.18);
-    color: #1e3a8a;
+    background: rgba(0, 230, 118, 0.22);
+    color: #064e3b;
   }
 }
 
 @layer utilities {
   .lux-panel {
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 246, 255, 0.78));
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(239, 246, 255, 0.82));
     border: 1px solid rgba(219, 234, 254, 0.8);
     box-shadow:
       0 22px 60px rgba(37, 99, 235, 0.08),
+      0 0 0 1px rgba(0, 229, 255, 0.04),
       inset 0 1px 0 rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(18px);
   }
@@ -75,6 +81,32 @@
       linear-gradient(rgba(37, 99, 235, 0.06) 1px, transparent 1px),
       linear-gradient(90deg, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
     background-size: 36px 36px;
+  }
+
+  .neon-glow-green {
+    box-shadow: 0 0 15px rgba(0, 230, 118, 0.3), 0 0 45px rgba(0, 230, 118, 0.1);
+  }
+
+  .neon-glow-cyan {
+    box-shadow: 0 0 15px rgba(0, 229, 255, 0.3), 0 0 45px rgba(0, 229, 255, 0.1);
+  }
+
+  .neon-glow-purple {
+    box-shadow: 0 0 15px rgba(213, 0, 249, 0.3), 0 0 45px rgba(213, 0, 249, 0.1);
+  }
+
+  .neon-border {
+    border: 1px solid rgba(0, 229, 255, 0.25);
+  }
+
+  .neon-text-green {
+    color: #00e676;
+    text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
+  }
+
+  .neon-text-cyan {
+    color: #00e5ff;
+    text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
   }
 
   .hero-spline-main {

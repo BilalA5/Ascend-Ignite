@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { BookOpen, Trophy, ArrowRight, PlayCircle, Calendar, Sparkles, Zap } from 'lucide-react';
+import { Trophy, ArrowRight, PlayCircle, Calendar, Sparkles, Zap } from 'lucide-react';
 import { getProfile } from '../services/profileService';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription, CardFooter } from '../components/Card';
 import { Button } from '../components/Button';
@@ -23,32 +23,69 @@ export const Dashboard = () => {
 
     return (
         <div className="container mx-auto max-w-7xl px-4 py-8">
-            <header className="mb-10">
+            <header className="mb-8">
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
-                    className="lux-panel neon-border flex flex-col gap-6 rounded-[34px] px-7 py-8 md:flex-row md:items-end md:justify-between md:px-10"
+                    className="lux-panel neon-border rounded-[30px] px-6 py-7 md:px-8"
                 >
-                    <div>
-                        <p className="text-xs uppercase tracking-[0.34em] text-primary font-semibold">Dashboard</p>
-                        <h1 className="mt-3 text-4xl font-bold text-slate-900 md:text-5xl">
-                            Welcome back, <span className="text-primary">{firstName}</span>
-                        </h1>
-                        <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
-                            Your personalized AI-readiness journey awaits. Track your progress, master new skills, and level up your career.
-                        </p>
-                    </div>
-
-                    <div className="grid gap-3 sm:grid-cols-2">
-                        <StatPill label="Current track" value="AI Readiness" accent />
-                        <StatPill label="Momentum" value={`${overallProgress}%`} />
+                    <div className="flex flex-col gap-6">
+                        <div>
+                            <p className="text-xs font-semibold uppercase tracking-[0.34em] text-primary">Dashboard</p>
+                            <h1 className="mt-3 text-3xl font-bold text-slate-900 md:text-4xl">
+                                Welcome back, <span className="text-primary">{firstName}</span>
+                            </h1>
+                            <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600">
+                                Pick up where you left off, keep your momentum visible, and move through the program one focused step at a time.
+                            </p>
+                        </div>
+                        <div className="grid gap-3 sm:grid-cols-3">
+                            <StatPill label="Current track" value="AI Readiness" accent />
+                            <StatPill label="Progress" value={`${overallProgress}%`} />
+                            <StatPill label="Quizzes passed" value={String(quizzesPassed)} />
+                        </div>
                     </div>
                 </motion.div>
             </header>
 
-            <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.55fr)_360px]">
-                <div className="space-y-8">
+            <div className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1.45fr)_340px]">
+                <div className="space-y-6">
                     <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}>
+                        <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-slate-900">
+                            <Sparkles className="h-5 w-5 text-primary" />
+                            Continue Your Path
+                        </h2>
+                        <Card className="overflow-hidden neon-border group">
+                            <div className="grid gap-0 md:grid-cols-[220px_minmax(0,1fr)]">
+                                <div className="relative flex min-h-[200px] items-center justify-center overflow-hidden bg-[linear-gradient(180deg,rgba(37,99,235,0.88),rgba(30,64,175,0.96))] p-6 text-white">
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
+                                    <div className="relative z-10 text-center">
+                                        <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-white/20 backdrop-blur shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                                            <PlayCircle className="h-8 w-8" />
+                                        </div>
+                                        <p className="text-xs uppercase tracking-[0.28em] text-white/80">Recommended next</p>
+                                    </div>
+                                </div>
+                                <div className="flex flex-col justify-between p-6 md:p-7">
+                                    <div>
+                                        <div className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-primary">Priority focus</div>
+                                        <h3 className="text-2xl font-bold text-slate-900">{recommendedModule.title}</h3>
+                                        <p className="mt-2 text-base leading-7 text-slate-600">{recommendedModule.description}</p>
+                                    </div>
+                                    <div className="mt-5 flex flex-wrap gap-3">
+                                        <Link to={`/module/${recommendedModule.id}`}>
+                                            <Button>Start Module</Button>
+                                        </Link>
+                                        <span className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1.5 text-xs font-semibold uppercase tracking-[0.18em] text-slate-500">
+                                            {recommendedModule.infographics.length} lessons
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </Card>
+                    </motion.div>
+
+                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}>
                         <Card className="border-primary/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.06),rgba(255,255,255,0.9))]">
                             <CardHeader>
                                 <CardTitle className="flex items-center gap-2 text-primary">
@@ -65,38 +102,6 @@ export const Dashboard = () => {
                                     <Tag>{profile.mindsetType || 'Growth-Oriented'}</Tag>
                                 </div>
                             </CardContent>
-                        </Card>
-                    </motion.div>
-
-                    <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}>
-                        <h2 className="mb-4 flex items-center gap-2 text-xl font-bold text-slate-900">
-                            <Sparkles className="h-5 w-5 text-primary" />
-                            Up Next for You
-                        </h2>
-                        <Card className="overflow-hidden neon-border group">
-                            <div className="grid gap-0 md:grid-cols-[260px_minmax(0,1fr)]">
-                                <div className="flex min-h-[220px] items-center justify-center bg-[linear-gradient(180deg,rgba(37,99,235,0.88),rgba(30,64,175,0.96))] p-8 text-white relative overflow-hidden">
-                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.15),transparent_50%)]" />
-                                    <div className="text-center relative z-10">
-                                        <div className="mx-auto mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-white/20 backdrop-blur shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                                            <PlayCircle className="h-10 w-10" />
-                                        </div>
-                                        <p className="text-xs uppercase tracking-[0.28em] text-white/80">Recommended module</p>
-                                    </div>
-                                </div>
-                                <div className="flex flex-col justify-between p-7 md:p-9">
-                                    <div>
-                                        <div className="mb-3 text-xs font-bold uppercase tracking-[0.28em] text-primary">Priority focus</div>
-                                        <h3 className="text-2xl font-bold text-slate-900">{recommendedModule.title}</h3>
-                                        <p className="mt-2 text-base leading-7 text-slate-600">{recommendedModule.description}</p>
-                                    </div>
-                                    <div className="mt-6">
-                                        <Link to={`/module/${recommendedModule.id}`}>
-                                            <Button className="w-full sm:w-auto">Start Module</Button>
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
                         </Card>
                     </motion.div>
 
@@ -185,7 +190,7 @@ export const Dashboard = () => {
                     </motion.div>
                 </div>
 
-                <div className="space-y-8">
+                <div className="space-y-6">
                     <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: 0.1 }}>
                         <Card className="neon-border">
                             <CardHeader>

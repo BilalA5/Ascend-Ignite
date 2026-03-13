@@ -2,7 +2,6 @@ import {
     forwardRef,
     useCallback,
     useEffect,
-    useRef,
     useState,
     type MouseEvent,
 } from 'react';
@@ -189,7 +188,7 @@ function FeatureCard({ children, step, stepsData }: { children: React.ReactNode;
             style={{ '--x': useMotionTemplate`${mouseX}px`, '--y': useMotionTemplate`${mouseY}px` } as WrapperStyle}
         >
             <div className="relative w-full overflow-hidden rounded-3xl border border-slate-200 bg-white transition-colors duration-300">
-                <div className="relative m-8 md:m-10 min-h-[400px] md:min-h-[450px] w-full overflow-hidden">
+                <div className="relative m-6 md:m-8 min-h-[360px] w-full overflow-hidden md:min-h-[410px]">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={step}
@@ -319,7 +318,7 @@ export function FeatureCarousel({
     };
 
     return (
-        <div className="flex flex-col gap-12 w-full max-w-4xl mx-auto p-4">
+        <div className="mx-auto flex w-full max-w-4xl flex-col gap-8 p-3 md:gap-10 md:p-4">
             <FeatureCard step={step} stepsData={stepsData}>
                 <AnimatePresence mode="wait">
                     <motion.div key={step} {...ANIMATION_PRESETS.fadeInScale} className="w-full h-full absolute">

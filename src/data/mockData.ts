@@ -1,4 +1,10 @@
 import { Event, ModuleTemplate, Quiz } from '../types';
+import { appVisuals } from './visuals';
+
+const moduleOnePartOneVideo = new URL('../../module-videos/Module 1/Module 1 Part 1.mp4', import.meta.url).href;
+const moduleOnePartTwoVideo = new URL('../../module-videos/Module 1/Module 1 Part 2.mp4', import.meta.url).href;
+const moduleOnePartThreeVideo = new URL('../../module-videos/Module 1/Module 1 Part 3.mp4', import.meta.url).href;
+const moduleOnePartFourVideo = new URL('../../module-videos/Module 1/Module 1 Part 4.mp4', import.meta.url).href;
 
 export const mockEvents: Event[] = [
     {
@@ -40,8 +46,15 @@ export const moduleTemplates: ModuleTemplate[] = [
         id: 'module-1',
         title: 'Confidence Through Skills',
         topic: 'What makes you irreplaceable in your field',
-        description: 'Discover the uniquely human skills that AI cannot replicate and learn how to position yourself for success.',
-        thumbnail: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+        description: 'Learn the strengths that matter most in modern work and how to apply them with confidence.',
+        videoUrl: moduleOnePartOneVideo,
+        videoPlaylist: [
+            { title: 'Part 1: Human Skills Overview', src: moduleOnePartOneVideo },
+            { title: 'Part 2: Confidence in Practice', src: moduleOnePartTwoVideo },
+            { title: 'Part 3: Real-World Scenarios', src: moduleOnePartThreeVideo },
+            { title: 'Part 4: Action Plan', src: moduleOnePartFourVideo },
+        ],
+        thumbnail: appVisuals.modules['module-1'].thumbnail,
         infographics: [
             { title: 'The Empathy Advantage', content: 'Emotional intelligence and empathy are critical human skills that machines lack.' },
             { title: 'Creative Problem Solving', content: 'While AI can process data, humans excel at connecting disparate ideas to solve novel problems.' }
@@ -65,7 +78,7 @@ export const moduleTemplates: ModuleTemplate[] = [
         title: 'Navigate AI Uncertainty',
         topic: 'Your industry in 2030',
         description: 'Explore the projected impact of AI on various industries and how to prepare for future changes.',
-        thumbnail: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800',
+        thumbnail: appVisuals.modules['module-2'].thumbnail,
         infographics: [
             { title: 'Automation Risk', content: 'Routine and repetitive tasks are at high risk of automation by 2030.' },
             { title: 'New Opportunities', content: 'AI will create new roles focused on oversight, ethics, and strategic implementation.' }
@@ -89,7 +102,7 @@ export const moduleTemplates: ModuleTemplate[] = [
         title: 'Practical AI Skills',
         topic: 'Using AI responsibly and effectively',
         description: 'Learn how to leverage AI tools to enhance your productivity while maintaining ethical standards.',
-        thumbnail: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+        thumbnail: appVisuals.modules['module-3'].thumbnail,
         infographics: [
             { title: 'Effective Prompting', content: 'The quality of AI output depends heavily on the clarity and specificity of the prompt.' },
             { title: 'The Hallucination Problem', content: 'AI models can confidently generate incorrect information. Always verify critical facts.' }

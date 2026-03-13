@@ -11,9 +11,9 @@ import {
 } from 'lucide-react';
 import { Button } from '../components/Button';
 import { FeatureSteps } from '../components/FeatureSteps';
-import { FeatureCarousel } from '../components/FeatureCarousel';
 import { LandingNavbar } from '../components/LandingNavbar';
 import { VerticalCutReveal } from '../components/VerticalCutReveal';
+import { appVisuals } from '../data/visuals';
 import { getProfile } from '../services/profileService';
 
 const HeroSpline = lazy(() =>
@@ -34,9 +34,9 @@ export const Landing = () => {
         target: revealRef,
         offset: ['start start', 'end end'],
     });
-    const introOverlayOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [0, 0.08, 0.16]);
-    const contentY = useTransform(scrollYProgress, [0, 1], ['30vh', '0vh']);
-    const contentOpacity = useTransform(scrollYProgress, [0, 0.25, 1], [0.72, 0.92, 1]);
+    const introOverlayOpacity = useTransform(scrollYProgress, [0, 0.6, 1], [0, 0.06, 0.12]);
+    const contentY = useTransform(scrollYProgress, [0, 1], ['14vh', '0vh']);
+    const contentOpacity = useTransform(scrollYProgress, [0, 0.25, 1], [0.84, 0.94, 1]);
 
     if (profile) {
         return <Navigate to="/dashboard" replace />;
@@ -47,10 +47,10 @@ export const Landing = () => {
             <LandingNavbar />
 
             {/* ── Hero ── */}
-            <section ref={revealRef} className="relative min-h-[185vh] overflow-hidden">
+            <section ref={revealRef} className="relative min-h-[148vh] overflow-hidden md:min-h-[152vh]">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#bfe9ff_0%,#87cefa_34%,#9fd7fb_54%,#dfeffd_72%,#ffffff_100%)]" />
 
-                <div className="relative z-10 flex min-h-[185vh] flex-col">
+                <div className="relative z-10 flex min-h-[148vh] flex-col md:min-h-[152vh]">
                     <motion.div
                         initial={{ opacity: 0, y: 18 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -75,7 +75,7 @@ export const Landing = () => {
                                     <HeroSpline />
                                 </Suspense>
                             </div>
-                            <div className="relative z-10 flex justify-center pb-6 md:pb-8">
+                            <div className="relative z-10 flex justify-center pb-4 md:pb-5">
                                 <div className="h-11 w-[1px] bg-gradient-to-b from-transparent via-blue-300/80 to-transparent" />
                             </div>
                         </div>
@@ -84,23 +84,23 @@ export const Landing = () => {
                     {/* Hero card */}
                     <motion.div
                         style={{ y: contentY, opacity: contentOpacity }}
-                        className="relative z-20 mt-auto px-4 pb-8 md:px-6"
+                        className="relative z-20 -mt-6 px-4 pb-4 md:-mt-10 md:px-6 md:pb-5"
                     >
-                        <div className="mx-auto max-w-4xl rounded-[32px] border border-white/40 bg-white/50 p-6 shadow-[0_24px_64px_rgba(15,23,42,0.08)] backdrop-blur-2xl backdrop-saturate-150 md:p-10">
-                            <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-4">Ascend Ignite</p>
+                        <div className="mx-auto max-w-4xl rounded-[32px] border border-white/40 bg-white/50 p-5 shadow-[0_24px_64px_rgba(15,23,42,0.08)] backdrop-blur-2xl backdrop-saturate-150 md:p-7">
+                            <p className="mb-3 text-[10px] font-bold uppercase tracking-[0.3em] text-primary">Ascend Ignite</p>
                             <h1 className="max-w-2xl text-3xl text-slate-950 md:text-5xl leading-[1.15]">
                                 <VerticalCutReveal
                                     splitBy="words"
                                     staggerDuration={0.08}
                                     transition={{ type: 'spring', stiffness: 200, damping: 21 }}
                                 >
-                                    The career platform for students who don't want to be left behind.
+                                    Career readiness for students through AI literacy, advising, and real-world momentum.
                                 </VerticalCutReveal>
                             </h1>
-                            <p className="mt-4 max-w-lg text-base leading-7 text-slate-500">
-                                Learn to work alongside AI, build real career skills, and earn certificates that actually say something — all in under an hour.
+                            <p className="mt-3 max-w-lg text-base leading-7 text-slate-500">
+                                Build confidence through three guided modules focused on AI literacy, career readiness, and practical student outcomes.
                             </p>
-                            <div className="mt-6 flex items-center gap-4">
+                            <div className="mt-4 flex items-center gap-4">
                                 <Link to="/signup">
                                     <Button size="lg" className="gap-2">
                                         Start for free <ArrowRight className="h-4 w-4" />
@@ -108,54 +108,126 @@ export const Landing = () => {
                                 </Link>
                                 <span className="text-xs text-slate-400">No credit card. No catch.</span>
                             </div>
+                            <div className="mt-6 grid gap-3 md:grid-cols-[1.2fr_0.8fr] md:gap-4">
+                                <div className="app-photo-frame rounded-[26px]">
+                                    <img
+                                        src={appVisuals.community.hero.src}
+                                        alt={appVisuals.community.hero.alt}
+                                        className="h-56 w-full object-cover md:h-64"
+                                    />
+                                    <div className="absolute inset-x-0 bottom-0 z-10 p-5 text-white">
+                                        <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-blue-100">Career-ready community</p>
+                                        <p className="mt-2 max-w-md text-sm leading-6 text-white/90">
+                                            Learn with context, then apply it through community, advising, and visible progress.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div className="grid gap-4 sm:grid-cols-2 md:grid-cols-1">
+                                    {[
+                                        { label: 'Fast path', value: '3 guided modules' },
+                                        { label: 'Practical support', value: 'Events + advising' },
+                                    ].map((item) => (
+                                        <div key={item.label} className="app-photo-chip rounded-[24px] p-5">
+                                            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-primary">{item.label}</p>
+                                            <p className="mt-3 text-lg font-bold text-slate-900">{item.value}</p>
+                                        </div>
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </motion.div>
                 </div>
             </section>
 
+            <div className="relative h-20 overflow-hidden md:h-28">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0)_0%,rgba(244,248,255,0.75)_55%,#f8fbff_100%)]" />
+                <div className="absolute inset-x-0 top-1/2 mx-auto h-px w-[min(88%,920px)] -translate-y-1/2 bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.16),transparent)]" />
+            </div>
+
             {/* ── What you get ── */}
-            <section className="relative overflow-hidden py-20 md:py-28">
+            <section className="relative overflow-hidden pt-18 pb-14 md:pt-24 md:pb-18">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_50%,#eef5ff_100%)]" />
                 <div className="relative z-10 container mx-auto max-w-5xl px-4 md:px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="mb-14"
-                    >
-                        <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">What you get</p>
-                        <h2 className="mt-3 text-3xl font-bold text-slate-950 md:text-4xl max-w-md">
-                            Not another course library.
-                        </h2>
-                    </motion.div>
+                    <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end">
+                        <motion.div
+                            initial={{ opacity: 0, y: 16 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            className="space-y-6"
+                        >
+                            <div>
+                                <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">What you get</p>
+                                <h2 className="mt-3 max-w-md text-3xl font-bold text-slate-950 md:text-4xl">
+                                    Not another course library.
+                                </h2>
+                                <p className="mt-4 max-w-lg text-base leading-7 text-slate-500">
+                                    Ascend Ignite combines short learning modules, AI-career context, and live support so students can move from uncertainty to clear next steps.
+                                </p>
+                            </div>
 
-                    <div className="grid gap-5 md:grid-cols-3">
+                            <div className="app-photo-frame rounded-[28px]">
+                                <div
+                                    aria-label={appVisuals.signup.alt}
+                                    className="relative h-64 w-full overflow-hidden bg-[linear-gradient(145deg,#020617_0%,#081225_45%,#0f172a_100%)]"
+                                >
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(96,165,250,0.22),transparent_34%),radial-gradient(circle_at_bottom_right,rgba(37,99,235,0.16),transparent_30%)]" />
+                                    <div className="absolute inset-4 flex items-center justify-center rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(2,6,23,0.82),rgba(15,23,42,0.64))] px-10 py-8 text-center shadow-[0_20px_50px_rgba(2,6,23,0.45)] backdrop-blur-xl">
+                                        <h3 className="max-w-[290px] text-[2rem] leading-[1.08] text-white [font-family:var(--font-accent)] italic">
+                                            Career clarity, structured guidance, visible progress.
+                                        </h3>
+                                    </div>
+                                </div>
+                            </div>
+                        </motion.div>
+
+                        <div className="space-y-5">
+                            <div className="grid gap-5 md:grid-cols-3">
                         {[
                             { icon: <Target className="h-5 w-5" />, title: 'Career pathways', desc: 'Structured modules that move you from "I don\'t know what I\'m doing" to interview-ready.' },
-                            { icon: <Brain className="h-5 w-5" />, title: 'AI fluency', desc: 'Learn what AI can and can\'t do, how to use it well, and why your human skills still matter.' },
+                            { icon: <Brain className="h-5 w-5" />, title: <>AI<br />fluency</>, desc: 'Learn what AI can and can\'t do, how to use it well, and why your human skills still matter.' },
                             { icon: <Users className="h-5 w-5" />, title: 'Real community', desc: 'Networking events, advisor sessions, and peers who are figuring it out alongside you.' },
                         ].map((item, i) => (
                             <motion.div
-                                key={item.title}
+                                key={i}
                                 initial={{ opacity: 0, y: 20 }}
                                 whileInView={{ opacity: 1, y: 0 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.08 }}
-                                className="rounded-[24px] border border-white/50 bg-white/50 p-6 backdrop-blur-xl shadow-[0_4px_24px_rgba(15,23,42,0.04)]"
+                                className="flex h-full flex-col rounded-[24px] border border-white/50 bg-white/50 p-6 backdrop-blur-xl shadow-[0_4px_24px_rgba(15,23,42,0.04)]"
                             >
                                 <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-primary/8 text-primary">
                                     {item.icon}
                                 </div>
-                                <h3 className="text-lg font-bold text-slate-900">{item.title}</h3>
-                                <p className="mt-2 text-sm leading-6 text-slate-500">{item.desc}</p>
+                                <h3 className="min-h-[4rem] text-lg font-bold text-slate-900">{item.title}</h3>
+                                <p className="mt-2 min-h-[7.5rem] text-sm leading-6 text-slate-500">{item.desc}</p>
                             </motion.div>
                         ))}
+                            </div>
+
+                            <div className="grid gap-4 sm:grid-cols-3">
+                                {[
+                                    { value: '3', label: 'guided courses' },
+                                    { value: '< 1 hr', label: 'to complete the core path' },
+                                    { value: 'Live', label: 'community and advising support' },
+                                ].map((item) => (
+                                    <div key={item.label} className="app-photo-chip rounded-[24px] p-5">
+                                        <p className="text-2xl font-bold text-slate-900">{item.value}</p>
+                                        <p className="mt-2 text-sm leading-6 text-slate-500">{item.label}</p>
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
                     </div>
                 </div>
             </section>
 
+            <div className="relative h-8 overflow-hidden md:h-10">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(238,245,255,0.18)_0%,rgba(238,245,255,0.72)_100%)]" />
+                <div className="absolute inset-x-0 bottom-0 mx-auto h-px w-[min(88%,860px)] bg-[linear-gradient(90deg,transparent,rgba(37,99,235,0.12),transparent)]" />
+            </div>
+
             {/* ── How it works — FeatureSteps ── */}
-            <section className="relative">
+            <section className="relative -mt-2 pt-2 md:-mt-3 md:pt-4">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#eef5ff_0%,#f8fbff_50%,#ffffff_100%)] pointer-events-none" />
                 <div className="relative z-10">
                     <FeatureSteps
@@ -166,61 +238,27 @@ export const Landing = () => {
                                 step: 'Step 1',
                                 title: 'Find your starting point',
                                 content: 'Quick onboarding quiz figures out where you are and recommends what to focus on first.',
-                                image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800',
+                                image: appVisuals.landing.featureSteps[0],
                             },
                             {
                                 step: 'Step 2',
                                 title: 'Learn through real scenarios',
                                 content: 'Short courses with videos, interactive exercises, and scenario-based learning — not just reading.',
-                                image: 'https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&q=80&w=800',
+                                image: appVisuals.landing.featureSteps[1],
                             },
                             {
                                 step: 'Step 3',
                                 title: 'Prove what you know',
                                 content: 'Pass the quizzes, earn certificates, and share them with employers or on LinkedIn.',
-                                image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&q=80&w=800',
+                                image: appVisuals.landing.featureSteps[2],
                             },
                         ]}
                     />
                 </div>
             </section>
 
-            {/* ── Platform Preview Carousel ── */}
-            <section className="relative overflow-hidden py-16 md:py-24">
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_50%,#eef5ff_100%)]" />
-                <div className="relative z-10 container mx-auto px-4 md:px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 16 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-8"
-                    >
-                        <p className="text-[11px] font-bold uppercase tracking-[0.3em] text-primary">See it in action</p>
-                        <h2 className="mt-3 text-3xl font-bold text-slate-950 md:text-4xl">A closer look at the platform</h2>
-                    </motion.div>
-
-                    <FeatureCarousel
-                        steps={[
-                            { id: '1', name: 'Courses', title: 'Guided Learning Modules', description: 'Each course includes videos, interactive scenarios, and knowledge checks designed for real-world readiness.' },
-                            { id: '2', name: 'Quizzes', title: 'Test Your Understanding', description: 'Score 70% or higher to prove mastery and unlock your certificate for each course.' },
-                            { id: '3', name: 'Certificates', title: 'Earn Real Credentials', description: 'Download professional certificates and share them on LinkedIn or with employers.' },
-                            { id: '4', name: 'Community', title: 'Connect & Grow Together', description: 'Join networking events, advising sessions, and connect with peers on the same journey.' },
-                        ]}
-                        image={{
-                            step1img1: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600',
-                            step1img2: 'https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&q=80&w=600',
-                            step2img1: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&q=80&w=600',
-                            step2img2: 'https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?auto=format&fit=crop&q=80&w=600',
-                            step3img: 'https://images.unsplash.com/photo-1523050854058-8df90110c476?auto=format&fit=crop&q=80&w=600',
-                            step4img: 'https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&q=80&w=600',
-                            alt: 'Ascend Ignite platform preview',
-                        }}
-                    />
-                </div>
-            </section>
-
             {/* ── What's included strip ── */}
-            <section className="relative overflow-hidden py-10">
+            <section className="relative overflow-hidden py-8">
                 <div className="absolute inset-0 bg-slate-900" />
                 <div className="relative z-10 container mx-auto px-4 md:px-6">
                     <div className="flex flex-wrap items-center justify-center gap-x-10 gap-y-4">
@@ -234,7 +272,7 @@ export const Landing = () => {
             </section>
 
             {/* ── FAQ ── */}
-            <section className="relative overflow-hidden py-16 md:py-24">
+            <section className="relative overflow-hidden py-12 md:py-16">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#ffffff_0%,#f8fbff_100%)]" />
                 <div className="relative z-10 container mx-auto max-w-2xl px-4 md:px-6">
                     <motion.div
@@ -255,7 +293,7 @@ export const Landing = () => {
             </section>
 
             {/* ── Final CTA ── */}
-            <section className="relative overflow-hidden py-16 md:py-24">
+            <section className="relative overflow-hidden py-12 md:py-16">
                 <div className="absolute inset-0 bg-[linear-gradient(180deg,#f8fbff_0%,#eef5ff_100%)]" />
                 <div className="relative z-10 container mx-auto max-w-xl px-4 md:px-6 text-center">
                     <h2 className="text-3xl font-bold text-slate-950 md:text-4xl">Start building your future.</h2>

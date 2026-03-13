@@ -44,21 +44,27 @@ export function FeatureSteps({
         <div
             ref={containerRef}
             className={cn(className)}
-            // Height = 100vh per step so scrolling through pins and cycles
-            style={{ height: `${features.length * 100}vh` }}
+            // Use a shorter scroll track so the section feels more compact between lander blocks.
+            style={{ height: `${features.length * 78}vh` }}
         >
-            <div className="sticky top-0 h-screen flex items-center">
-                <div className="w-full max-w-7xl mx-auto px-8 md:px-12">
-                    <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-10 text-center">
+            <div className="sticky top-0 flex h-[78vh] items-start pt-14 md:h-[82vh] md:pt-18">
+                <div className="mx-auto w-full max-w-7xl px-6 md:px-10">
+                    <motion.h2
+                        initial={{ y: -110, opacity: 0, scale: 0.94 }}
+                        whileInView={{ y: [ -110, 18, 0 ], opacity: 1, scale: [0.94, 1.02, 1] }}
+                        viewport={{ once: false, amount: 0.75 }}
+                        transition={{ duration: 0.85, times: [0, 0.72, 1], ease: ['easeIn', 'easeOut', 'easeOut'] }}
+                        className="mb-7 text-center text-3xl font-bold md:mb-8 md:text-4xl lg:text-5xl"
+                    >
                         {title}
-                    </h2>
+                    </motion.h2>
 
-                    <div className="flex flex-col md:grid md:grid-cols-2 gap-6 md:gap-10">
-                        <div className="order-2 md:order-1 space-y-8">
+                    <div className="flex flex-col gap-5 md:grid md:grid-cols-2 md:gap-8">
+                        <div className="order-2 space-y-6 md:order-1 md:space-y-7">
                             {features.map((feature, index) => (
                                 <motion.div
                                     key={index}
-                                    className="flex items-center gap-6 md:gap-8 cursor-pointer"
+                                    className="flex cursor-pointer items-center gap-4 md:gap-6"
                                     initial={{ opacity: 0.3 }}
                                     animate={{ opacity: index === currentFeature ? 1 : 0.3 }}
                                     transition={{ duration: 0.4 }}
@@ -66,7 +72,7 @@ export function FeatureSteps({
                                 >
                                     <motion.div
                                         className={cn(
-                                            'w-8 h-8 md:w-10 md:h-10 rounded-full flex items-center justify-center border-2 shrink-0 transition-colors',
+                                            'flex h-8 w-8 shrink-0 items-center justify-center rounded-full border-2 transition-colors md:h-9 md:w-9',
                                             index === currentFeature
                                                 ? 'bg-primary border-primary text-white scale-110'
                                                 : index < currentFeature
@@ -85,15 +91,14 @@ export function FeatureSteps({
                                         <h3 className="text-lg md:text-xl font-semibold text-slate-900">
                                             {feature.title || feature.step}
                                         </h3>
-                                        <p className="text-sm md:text-base text-slate-500">
+                                        <p className="text-sm leading-6 text-slate-500 md:text-base">
                                             {feature.content}
                                         </p>
                                     </div>
                                 </motion.div>
                             ))}
 
-                            {/* Scroll progress dots */}
-                            <div className="flex items-center gap-2 pt-4">
+                            <div className="flex items-center gap-2 pt-2">
                                 {features.map((_, i) => (
                                     <div
                                         key={i}
@@ -111,7 +116,7 @@ export function FeatureSteps({
                             </div>
                         </div>
 
-                        <div className="order-1 md:order-2 relative h-[200px] md:h-[300px] lg:h-[400px] overflow-hidden rounded-2xl">
+                        <div className="relative order-1 h-[220px] overflow-hidden rounded-2xl md:order-2 md:h-[300px] lg:h-[360px]">
                             <AnimatePresence mode="wait">
                                 {features.map(
                                     (feature, index) =>

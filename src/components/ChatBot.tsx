@@ -108,7 +108,7 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
     useEffect(() => {
         if (isOpen && messages.length === 0) {
             const welcomeMessage = mode === 'course'
-                ? `Hi! I'm your learning assistant for "${courseTitle}". Ask me anything about this course - concepts, scenarios, or quiz prep!`
+                ? `Hi! I'm your learning assistant for "${courseTitle}". ${courseContext ? `We are covering ${courseContext.toLowerCase()} ` : ''}Ask me anything about this course - concepts, scenarios, or quiz prep!`
                 : "Hi! I'm your Ascend Ignite assistant. I can help with email, support, certificates, navigation, and more. How can I help?";
 
             setMessages([{
@@ -117,7 +117,7 @@ export const ChatBot = ({ mode, courseTitle, courseContext }: ChatBotProps) => {
                 content: welcomeMessage,
             }]);
         }
-    }, [isOpen]);
+    }, [courseContext, courseTitle, isOpen, messages.length, mode]);
 
     const handleSend = () => {
         if (!input.trim()) return;

@@ -9,6 +9,7 @@ import { updateProfile } from '../services/profileService';
 import { generateProfileSummary } from '../services/aiService';
 import { UserProfile } from '../types';
 import { moduleTemplates } from '../data/mockData';
+import { appVisuals } from '../data/visuals';
 
 type QuestionType = 'select' | 'radio';
 
@@ -135,7 +136,29 @@ export const Onboarding = () => {
     }
 
     return (
-        <div className="max-w-2xl mx-auto px-4 py-12 md:py-20 min-h-[80vh] flex flex-col">
+        <div className="mx-auto grid min-h-[80vh] max-w-6xl gap-8 px-4 py-12 md:grid-cols-[0.88fr_1.12fr] md:py-20">
+            <div className="space-y-5">
+                <div className="app-photo-frame rounded-[30px]">
+                    <img
+                        src={appVisuals.onboarding.src}
+                        alt={appVisuals.onboarding.alt}
+                        className="h-[320px] w-full object-cover md:h-[420px]"
+                    />
+                    <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-blue-100">{appVisuals.onboarding.eyebrow}</p>
+                        <h2 className="mt-3 max-w-md text-2xl font-bold text-white">{appVisuals.onboarding.title}</h2>
+                        <p className="mt-3 max-w-md text-sm leading-6 text-white/85">{appVisuals.onboarding.description}</p>
+                    </div>
+                </div>
+                <div className="grid gap-4 sm:grid-cols-3 md:grid-cols-1">
+                    {['5 questions', 'Adaptive profile', 'Personalized path'].map((item) => (
+                        <div key={item} className="app-photo-chip rounded-[22px] p-4">
+                            <p className="text-sm font-semibold text-slate-900">{item}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+            <div className="flex flex-col">
             <div className="mb-8">
                 <div className="flex justify-between items-center mb-4 text-sm font-medium text-slate-500">
                     <span>Step {currentStep + 1} of {questions.length}</span>
@@ -245,6 +268,7 @@ export const Onboarding = () => {
                     </Card>
                 </motion.div>
             </AnimatePresence>
+            </div>
         </div>
     );
 };

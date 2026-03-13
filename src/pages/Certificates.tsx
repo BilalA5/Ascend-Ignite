@@ -6,6 +6,7 @@ import { moduleTemplates } from '../data/mockData';
 import { Card, CardContent } from '../components/Card';
 import { Button } from '../components/Button';
 import { getCompletedModuleIds, getModuleProgress } from '../services/progressService';
+import { appVisuals } from '../data/visuals';
 
 const Certificate = ({ name, courseName, date, onDownload }: {
     name: string;
@@ -114,19 +115,26 @@ export const Certificates = () => {
 
     return (
         <div className="container mx-auto max-w-6xl px-4 py-8">
-            <header className="mb-10">
+            <header className="mb-10 grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
                 <motion.div
                     initial={{ opacity: 0, y: 12 }}
                     animate={{ opacity: 1, y: 0 }}
                 >
                     <p className="text-xs uppercase tracking-[0.34em] text-primary font-semibold">Achievements</p>
                     <h1 className="mt-3 text-4xl font-bold text-slate-900 md:text-5xl">
-                        Your <span className="bg-gradient-to-r from-amber-500 to-amber-600 bg-clip-text text-transparent">Certificates</span>
+                        Your <span className="bg-gradient-to-r from-primary to-primary-hover bg-clip-text text-transparent">Certificates</span>
                     </h1>
                     <p className="mt-3 max-w-2xl text-base leading-7 text-slate-600 md:text-lg">
                         Complete courses and quizzes to earn professional certificates that showcase your AI-readiness skills.
                     </p>
                 </motion.div>
+                <div className="app-photo-frame rounded-[30px]">
+                    <img src={appVisuals.certificates.src} alt={appVisuals.certificates.alt} className="h-[300px] w-full object-cover" />
+                    <div className="absolute inset-x-0 bottom-0 z-10 p-6 text-white">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.32em] text-blue-100">{appVisuals.certificates.eyebrow}</p>
+                        <p className="mt-3 max-w-md text-sm leading-6 text-white/90">{appVisuals.certificates.description}</p>
+                    </div>
+                </div>
             </header>
 
             {selectedCert ? (
@@ -165,7 +173,7 @@ export const Certificates = () => {
                                 <Card className={`relative overflow-hidden transition-all ${isCompleted ? 'neon-border cursor-pointer hover:shadow-[0_20px_60px_rgba(37,99,235,0.12)]' : 'opacity-75'}`}>
                                     <div className="h-2 bg-primary" />
                                     <CardContent className="p-6 text-center">
-                                        <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${isCompleted ? 'bg-gradient-to-br from-amber-100 to-amber-200 text-amber-600' : 'bg-slate-100 text-slate-400'}`}>
+                                        <div className={`mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full ${isCompleted ? 'bg-gradient-to-br from-blue-100 to-blue-200 text-primary' : 'bg-slate-100 text-slate-400'}`}>
                                             {isCompleted ? (
                                                 <Award className="h-8 w-8" />
                                             ) : (
@@ -179,7 +187,7 @@ export const Certificates = () => {
                                                 <Button
                                                     size="sm"
                                                     onClick={() => setSelectedCert(module.id)}
-                                                    className="w-full bg-gradient-to-r from-amber-500 to-amber-600 shadow-[0_8px_25px_rgba(245,158,11,0.3)]"
+                                                    className="w-full bg-gradient-to-r from-primary to-primary-hover shadow-[0_8px_25px_rgba(37,99,235,0.28)]"
                                                 >
                                                     View Certificate
                                                 </Button>

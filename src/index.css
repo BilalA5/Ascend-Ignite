@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&family=Cormorant+Garamond:wght@500;600;700&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -16,6 +16,7 @@
 
   --font-heading: "Fraunces", serif;
   --font-body: "Manrope", sans-serif;
+  --font-accent: "Cormorant Garamond", serif;
 }
 
 @layer base {
@@ -95,6 +96,30 @@
     border: 1px solid rgba(37, 99, 235, 0.25);
   }
 
+  .app-photo-frame {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.72);
+    box-shadow:
+      0 22px 60px rgba(15, 23, 42, 0.08),
+      0 0 0 1px rgba(37, 99, 235, 0.04);
+  }
+
+  .app-photo-frame::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(15, 23, 42, 0) 24%, rgba(15, 23, 42, 0.18) 100%);
+    pointer-events: none;
+  }
+
+  .app-photo-chip {
+    border: 1px solid rgba(255, 255, 255, 0.54);
+    background: rgba(255, 255, 255, 0.72);
+    backdrop-filter: blur(14px);
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  }
+
   .neon-text-green {
     color: #00e676;
     text-shadow: 0 0 10px rgba(0, 230, 118, 0.4);
@@ -106,6 +131,7 @@
   }
 
   .hero-spline-main {
+    position: relative;
     height: 100%;
     width: 100%;
     overflow: hidden;
@@ -118,13 +144,15 @@
   }
 
   .hero-spline-stage {
-    height: 118%;
-    width: 118%;
-    min-height: 118vh;
-    min-width: 118vw;
-    transform: scale(1.82) translateY(-2%);
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    width: 100%;
+    min-height: 100vh;
+    min-width: 100%;
+    transform: scale(1.1) translate(-3%, 6%);
     transform-origin: center center;
-    filter: saturate(0.68) brightness(1.08) contrast(0.95);
+    filter: saturate(0.82) brightness(1.03) contrast(0.98);
     background:
       radial-gradient(circle at 50% 24%, rgba(224, 242, 254, 0.56), transparent 22%),
       linear-gradient(180deg, #b8e3fb 0%, #87cefa 58%, #87cefa 100%);
@@ -137,23 +165,58 @@
     background: #87cefa !important;
   }
 
+  .hero-side-line {
+    position: absolute;
+    top: 12%;
+    bottom: 10%;
+    width: 2px;
+    border-radius: 999px;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.88) 18%, rgba(255, 255, 255, 0.98) 50%, rgba(255, 255, 255, 0.88) 82%, rgba(255, 255, 255, 0));
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.28);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+  .hero-side-line-left {
+    left: 6%;
+  }
+
+  .hero-side-line-right {
+    right: 6%;
+  }
+
   @media (max-width: 1024px) {
     .hero-spline-stage {
-      height: 122%;
-      width: 122%;
-      min-height: 122vh;
-      min-width: 122vw;
-      transform: scale(1.68) translateY(0%);
+      min-height: 100vh;
+      transform: scale(1.08) translate(-2.5%, 5%);
+    }
+
+    .hero-side-line-left {
+      left: 4%;
+    }
+
+    .hero-side-line-right {
+      right: 4%;
     }
   }
 
   @media (max-width: 768px) {
     .hero-spline-stage {
-      height: 126%;
-      width: 126%;
-      min-height: 126vh;
-      min-width: 126vw;
-      transform: scale(1.5) translateY(2%);
+      min-height: 100vh;
+      transform: scale(1.04) translate(-2%, 4%);
+    }
+
+    .hero-side-line {
+      top: 14%;
+      bottom: 12%;
+    }
+
+    .hero-side-line-left {
+      left: 3%;
+    }
+
+    .hero-side-line-right {
+      right: 3%;
     }
   }
 }

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Flame } from 'lucide-react';
 import { getProfile } from '../services/profileService';

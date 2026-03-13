@@ -27,6 +27,10 @@ export interface ModuleTemplate {
     topic: string;
     description: string;
     videoUrl?: string;
+    videoPlaylist?: {
+        title: string;
+        src: string;
+    }[];
     thumbnail?: string;
     infographics: Infographic[];
     scenario: Scenario;

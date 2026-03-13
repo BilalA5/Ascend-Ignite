@@ -16,12 +16,19 @@ export const ModulePage = () => {
     const profile = getProfile();
     const moduleData = moduleTemplates.find(m => m.id === id) || null;
     const [activeScenario, setActiveScenario] = useState<number | null>(null);
+    const [selectedVideoIndex, setSelectedVideoIndex] = useState(0);
+    const videoPlaylist = moduleData?.videoPlaylist ?? [];
+    const selectedVideo = videoPlaylist[selectedVideoIndex] ?? null;
 
     useEffect(() => {
         if (!moduleData) {
             void navigate('/dashboard');
         }
     }, [moduleData, navigate]);
+
+    useEffect(() => {
+        setSelectedVideoIndex(0);
+    }, [id]);
 
     if (!profile || !moduleData) return null;
 
@@ -40,16 +47,59 @@ export const ModulePage = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.1 }}
             >
-                <div className="space-y-6">
-                    <VideoPlayer
-                        src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-                        poster={moduleData.thumbnail || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=1000'}
-                    />
-                    <Card className="neon-border">
-                        <CardContent className="pt-7">
-                            <p className="text-lg leading-8 text-slate-700">{moduleData.description}</p>
-                        </CardContent>
-                    </Card>
+                <div className="space-y-4">
+                    {selectedVideo ? (
+                        <>
+                            <VideoPlayer src={selectedVideo.src} poster={moduleData.thumbnail} />
+                            {videoPlaylist.length > 1 && (
+                                <Card className="neon-border">
+                                    <CardHeader>
+                                        <CardTitle className="text-lg">Lesson Videos</CardTitle>
+                                    </CardHeader>
+                                    <CardContent className="grid gap-3 sm:grid-cols-2">
+                                        {videoPlaylist.map((video, index) => (
+                                            <button
+                                                key={video.src}
+                                                type="button"
+                                                onClick={() => setSelectedVideoIndex(index)}
+                                                className={`rounded-[20px] border px-4 py-4 text-left transition-all ${
+                                                    index === selectedVideoIndex
+                                                        ? 'border-primary bg-primary text-white shadow-[0_18px_42px_rgba(37,99,235,0.22)]'
+                                                        : 'border-slate-200/70 bg-white text-slate-700 hover:border-primary/40 hover:bg-slate-50'
+                                                }`}
+                                            >
+                                                <p className="text-xs font-semibold uppercase tracking-[0.22em] opacity-75">
+                                                    Video {index + 1}
+                                                </p>
+                                                <p className="mt-2 text-sm font-semibold">{video.title}</p>
+                                            </button>
+                                        ))}
+                                    </CardContent>
+                                </Card>
+                            )}
+                        </>
+                    ) : moduleData.videoUrl ? (
+                        <VideoPlayer src={moduleData.videoUrl} poster={moduleData.thumbnail} />
+                    ) : (
+                        <Card className="overflow-hidden neon-border">
+                            <div className="relative">
+                                <img
+                                    src={moduleData.thumbnail}
+                                    alt={moduleData.title}
+                                    className="aspect-video w-full object-cover"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/70 via-slate-900/20 to-transparent" />
+                                <div className="absolute inset-x-0 bottom-0 p-6 text-white">
+                                    <p className="text-xs font-semibold uppercase tracking-[0.28em] text-blue-200">
+                                        Video coming soon
+                                    </p>
+                                    <p className="mt-2 max-w-2xl text-sm leading-7 text-slate-100/90">
+                                        This module does not have a local lesson video yet. The placeholder cartoon clip has been removed.
+                                    </p>
+                                </div>
+                            </div>
+                        </Card>
+                    )}
                 </div>
             </motion.section>
 
@@ -57,7 +107,7 @@ export const ModulePage = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 }}
-                className="space-y-6"
+                className="space-y-5"
             >
                 <h2 className="flex items-center gap-2 text-2xl font-bold">
                     <Info className="h-6 w-6 text-primary" /> Key Concepts

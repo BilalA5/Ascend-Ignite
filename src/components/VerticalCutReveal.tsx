@@ -1,5 +1,6 @@
 import {
     forwardRef,
+    type HTMLAttributes,
     useCallback,
     useEffect,
     useImperativeHandle,
@@ -7,13 +8,22 @@ import {
     useRef,
     useState,
 } from 'react';
-import { type DynamicAnimationOptions, motion } from 'framer-motion';
+import { motion, type Transition } from 'framer-motion';
 import { cn } from '../utils/helpers';
 
-interface TextProps {
+type IntlWithSegmenter = typeof Intl & {
+    Segmenter?: new (
+        locales?: string | string[],
+        options?: { granularity?: 'grapheme' | 'word' | 'sentence' },
+    ) => {
+        segment(input: string): Iterable<{ segment: string }>;
+    };
+};
+
+interface TextProps extends HTMLAttributes<HTMLSpanElement> {
     children: React.ReactNode;
     reverse?: boolean;
-    transition?: DynamicAnimationOptions;
+    transition?: Transition;
     splitBy?: 'words' | 'characters' | 'lines' | string;
     staggerDuration?: number;
     staggerFrom?: 'first' | 'last' | 'center' | 'random' | number;
@@ -65,8 +75,9 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
         const [isAnimating, setIsAnimating] = useState(false);
 
         const splitIntoCharacters = (text: string): string[] => {
-            if (typeof Intl !== 'undefined' && 'Segmenter' in Intl) {
-                const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+            const intlWithSegmenter = Intl as IntlWithSegmenter;
+            if (typeof Intl !== 'undefined' && intlWithSegmenter.Segmenter) {
+                const segmenter = new intlWithSegmenter.Segmenter('en', { granularity: 'grapheme' });
                 return Array.from(segmenter.segment(text), ({ segment }) => segment);
             }
             return Array.from(text);

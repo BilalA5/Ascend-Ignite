@@ -4,8 +4,10 @@ export const HeroSpline = () => {
     return (
         <main className="hero-spline-main">
             <div className="hero-spline-stage">
-                <Spline scene="https://prod.spline.design/tcUUNxf-0bXEcO81/scene.splinecode" />
+                <Spline scene="/scene.splinecode" />
             </div>
+            <div className="hero-side-line hero-side-line-left" aria-hidden="true" />
+            <div className="hero-side-line hero-side-line-right" aria-hidden="true" />
         </main>
     );
 };

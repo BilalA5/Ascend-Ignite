@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Flame } from 'lucide-react';
 import { Button } from '../components/Button';
 import { Card, CardContent } from '../components/Card';
+import { appVisuals } from '../data/visuals';
 import { saveProfile } from '../services/profileService';
 import { UserProfile } from '../types';
 
@@ -43,6 +44,14 @@ export const Signup = () => {
                     </div>
                     <h1 className="text-3xl font-bold font-heading text-slate-900">Join Ascend Ignite</h1>
                     <p className="text-slate-600 mt-2 text-center">Your journey to career clarity starts here.</p>
+                </div>
+
+                <div className="app-photo-frame mb-6 rounded-[28px]">
+                    <img src={appVisuals.signup.src} alt={appVisuals.signup.alt} className="h-56 w-full object-cover" />
+                    <div className="absolute inset-x-0 bottom-0 z-10 p-5 text-white">
+                        <p className="text-[10px] font-bold uppercase tracking-[0.3em] text-blue-100">{appVisuals.signup.eyebrow}</p>
+                        <p className="mt-2 max-w-sm text-sm leading-6 text-white/90">{appVisuals.signup.description}</p>
+                    </div>
                 </div>
 
                 <Card className="shadow-lg border-0 shadow-slate-200/50">
